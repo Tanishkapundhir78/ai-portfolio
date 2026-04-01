@@ -1,8 +1,12 @@
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+
 function App() {
   return (
-    <h1 className="text-5xl text-center mt-20">
-      Tailwind Working 🚀
-    </h1>
+    <div className="bg-black text-white">
+      <Navbar />
+      <Hero />
+    </div>
   );
 }
 
