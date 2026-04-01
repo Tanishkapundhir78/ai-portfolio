@@ -8,7 +8,7 @@ const Navbar = () => {
 
       <div className="space-x-8 hidden md:flex">
         <a href="#about" className="hover:text-gray-400 transition">About</a>
-        <a href="#projects" className="hover:text-gray-400 transition">Projects</a>
+        <a href="#projects" className="hover:text-gray-400 transition scroll-smooth">Projects</a>
         <a href="#contact" className="hover:text-gray-400 transition">Contact</a>
       </div>
 
