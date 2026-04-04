@@ -4,38 +4,14 @@ export default function SkillsRoadmap() {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const skills = [
-    {
-      title: "Languages",
-      items: ["Python", "R", "SQL"],
-    },
-    {
-      title: "Data Handling",
-      items: ["NumPy", "Pandas", "Matplotlib", "Seaborn"],
-    },
-    {
-      title: "Data Visualization",
-      items: ["Power BI", "Looker Studio", "Excel"],
-    },
-    {
-      title: "AI & Machine Learning",
-      items: ["Predictive Analysis", "Feature Engineering", "Model Building"],
-    },
-    {
-      title: "Web Scraping",
-      items: ["BeautifulSoup", "Selenium", "Requests"],
-    },
-    {
-      title: "Databases",
-      items: ["MySQL", "MariaDB", "PostgreSQL"],
-    },
-    {
-      title: "Frameworks & Tools",
-      items: ["Linux", "Git", "GitHub", "Streamlit", "FastAPI"],
-    },
-    {
-      title: "Cloud Platforms",
-      items: ["Azure", "IBM Cloud", "Watsonx"],
-    },
+    { title: "Languages", items: ["Python", "R", "SQL"] },
+    { title: "Data Handling", items: ["NumPy", "Pandas", "Matplotlib", "Seaborn"] },
+    { title: "Data Visualization", items: ["Power BI", "Looker Studio", "Excel"] },
+    { title: "AI & Machine Learning", items: ["Predictive Analysis", "Feature Engineering", "Model Building"] },
+    { title: "Web Scraping", items: ["BeautifulSoup", "Selenium", "Requests"] },
+    { title: "Databases", items: ["MySQL", "MariaDB", "PostgreSQL"] },
+    { title: "Frameworks & Tools", items: ["Linux", "Git", "GitHub", "Streamlit", "FastAPI"] },
+    { title: "Cloud Platforms", items: ["Azure", "IBM Cloud", "Watsonx"] },
   ];
 
   return (
@@ -57,40 +33,72 @@ export default function SkillsRoadmap() {
           A structured journey of my technical growth.
         </p>
 
-        {/* ROADMAP */}
+        {/* ROADMAP CONTAINER */}
         <div className="relative">
 
-          {/* CENTER LINE */}
-          <div className="absolute left-1/2 top-0 h-full w-[2px] bg-white/10"></div>
+          {/* 🐍 CURVED SVG PATH */}
+          <svg
+            className="absolute left-1/2 top-0 -translate-x-1/2 h-full"
+            width="200"
+            height="1200"
+            viewBox="0 0 200 1200"
+            fill="none"
+          >
+            <defs>
+              <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#a855f7" />
+                <stop offset="100%" stopColor="#3b82f6" />
+              </linearGradient>
+            </defs>
 
+            <path
+              d="
+                M100 0
+                C 180 100, 20 200, 100 300
+                C 180 400, 20 500, 100 600
+                C 180 700, 20 800, 100 900
+                C 180 1000, 20 1100, 100 1200
+              "
+              stroke="url(#gradient)"
+              strokeWidth="2"
+              fill="none"
+              opacity="0.4"
+            />
+          </svg>
+
+          {/* 🔥 ROADMAP ITEMS */}
           {skills.map((skill, index) => {
             const isLeft = index % 2 === 0;
 
             return (
               <div
                 key={index}
-                className={`relative flex items-center mb-20 ${
-                  isLeft ? "justify-start" : "justify-end"
+                className={`relative flex items-center mb-24 ${
+                  isLeft ? "justify-start pl-10" : "justify-end pr-10"
                 }`}
               >
-                {/* NODE */}
+
+                {/* 🔘 NODE */}
                 <div
                   onClick={() =>
                     setActiveIndex(activeIndex === index ? null : index)
                   }
-                  className="absolute left-1/2 -translate-x-1/2 cursor-pointer z-20"
+                  className={`absolute z-20 cursor-pointer
+                    ${
+                      isLeft ? "left-[60%]" : "left-[40%]"
+                    } -translate-x-1/2`}
                 >
                   <div
                     className={`w-6 h-6 rounded-full transition-all duration-300
-                    ${
-                      activeIndex === index
-                        ? "bg-purple-500 scale-125 shadow-lg shadow-purple-500/60 animate-pulse"
-                        : "bg-white/30"
-                    }`}
+                      ${
+                        activeIndex === index
+                          ? "bg-purple-500 scale-125 shadow-lg shadow-purple-500/60 animate-pulse"
+                          : "bg-white/30"
+                      }`}
                   ></div>
                 </div>
 
-                {/* CARD */}
+                {/* 📦 CARD */}
                 <div
                   className={`w-[42%] p-[1px] rounded-2xl transition-all duration-300
                   ${
@@ -105,7 +113,7 @@ export default function SkillsRoadmap() {
                       {skill.title}
                     </h3>
 
-                    {/* EXPAND */}
+                    {/* EXPAND SKILLS */}
                     {activeIndex === index && (
                       <div className="mt-3 animate-slideDown">
                         <div className="flex flex-wrap gap-2">
@@ -120,13 +128,13 @@ export default function SkillsRoadmap() {
                         </div>
                       </div>
                     )}
+
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
-
       </div>
     </section>
   );
