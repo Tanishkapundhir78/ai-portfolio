@@ -136,9 +136,9 @@ export default function Projects() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="relative group rounded-2xl p-[1px] bg-gradient-to-r from-white/10 to-white/10 hover:from-purple-400/40 hover:to-blue-400/40"
+              className="relative group rounded-2xl p-[1px] h-full bg-gradient-to-r from-white/10 to-white/10 hover:from-purple-400/40 hover:to-blue-400/40"
             >
-              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6">
+              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between">
 
                 <h3 className="text-2xl font-semibold mb-3">
                   {project.title}
