@@ -4,9 +4,9 @@ const projects = [
   {
     title: "Business Sales & Customer Analytics Dashboard",
     description: [
-      "Designed an end-to-end Power BI dashboard to track KPIs like revenue, customer retention, and sales trends.",
-      "Performed data modeling and transformation using DAX and SQL to ensure accurate and scalable reporting.",
-      "Enabled stakeholders to identify high-value customers and optimize business strategies.",
+      "Designed an end-to-end Power BI dashboard to track KPIs like revenue and retention.",
+      "Used DAX and SQL for data transformation and modeling.",
+      "Enabled better customer segmentation and strategic decisions.",
     ],
     tech: ["Power BI", "DAX", "SQL", "Data Modeling"],
     domain: "analytics",
@@ -14,47 +14,41 @@ const projects = [
   {
     title: "ML SaaS Churn Prediction Model",
     description: [
-      "Built a machine learning pipeline to predict customer churn using structured SaaS data.",
-      "Applied feature engineering and model tuning to improve prediction accuracy and reduce overfitting.",
-      "Used SHAP for model interpretability, helping understand key churn-driving factors.",
+      "Built a pipeline to predict customer churn.",
+      "Applied feature engineering and model optimization.",
+      "Used SHAP for interpretability of model decisions.",
     ],
-    tech: [
-      "Python",
-      "Scikit-learn",
-      "Pandas",
-      "Feature Engineering",
-      "SHAP",
-    ],
+    tech: ["Python", "Scikit-learn", "Pandas", "Feature Engineering", "SHAP"],
     domain: "ml",
   },
   {
     title: "Website Traffic Analytics Dashboard",
     description: [
-      "Developed an interactive dashboard in Looker Studio using Google Analytics data.",
-      "Analyzed traffic sources, user behavior, and conversion funnels.",
-      "Helped identify high-performing channels and optimize marketing decisions.",
+      "Built dashboard using Google Analytics data.",
+      "Analyzed traffic sources and user behavior.",
+      "Improved marketing insights and decisions.",
     ],
-    tech: ["Looker Studio", "Google Analytics", "Data Visualization"],
+    tech: ["Looker Studio", "Google Analytics"],
     domain: "analytics",
   },
   {
     title: "Startup Blueprint Generator",
     description: [
-      "Built an AI-driven system to generate structured startup plans using IBM Granite.",
-      "Designed prompts to generate business models, revenue strategies, and market insights.",
-      "Focused on real-world usability with clear and actionable outputs.",
+      "AI tool generating startup strategies.",
+      "Used IBM Granite and prompt engineering.",
+      "Generated structured business outputs.",
     ],
-    tech: ["Python", "IBM Granite", "Watsonx", "Prompt Engineering"],
+    tech: ["Python", "IBM Granite", "Watsonx"],
     domain: "ai",
   },
   {
     title: "Breast Cancer Analysis",
     description: [
-      "Performed exploratory data analysis on medical datasets to identify key patterns.",
-      "Built classification models for early cancer prediction.",
-      "Evaluated model performance using metrics like accuracy and precision.",
+      "Performed EDA on medical dataset.",
+      "Built classification models.",
+      "Evaluated prediction performance.",
     ],
-    tech: ["Python", "Pandas", "EDA", "Logistic Regression"],
+    tech: ["Python", "Pandas", "Logistic Regression"],
     domain: "ml",
   },
 ];
@@ -63,37 +57,18 @@ export default function Projects() {
   const [activeProject, setActiveProject] = useState(null);
   const [aiResponse, setAIResponse] = useState("");
 
+  // 🔥 IMPRESSIVE AI ENGINE (NOT REPEATING DESCRIPTION)
   const generateAI = (project, type) => {
     if (type === "recruiter") {
-      return `🎯 ${project.title} demonstrates strong ability to solve real-world problems using ${
-        project.domain === "ml"
-          ? "machine learning and data modeling"
-          : project.domain === "analytics"
-          ? "data visualization and business analytics"
-          : "AI-driven system design"
-      }. It reflects practical implementation skills and a focus on measurable outcomes.`;
+      return `🎯 What stands out in ${project.title} is not just the implementation, but the thinking behind it. This project shows the ability to translate raw data into decisions that actually matter in a business context. It reflects ownership, clarity in problem-solving, and an understanding of how data impacts real outcomes.`;
     }
 
     if (type === "technical") {
-      return `⚙️ The project leverages ${project.tech.join(
-        ", "
-      )}. It includes structured data handling, optimized workflows, and ${
-        project.domain === "ml"
-          ? "model training, evaluation, and interpretability techniques"
-          : project.domain === "analytics"
-          ? "KPI tracking, dashboard design, and data transformation"
-          : "prompt engineering and AI integration"
-      }.`;
+      return `⚙️ From a technical lens, this project reflects strong control over the pipeline — from structuring data correctly to ensuring outputs are meaningful. The focus isn’t just on building models or dashboards, but on making them reliable, interpretable, and aligned with real-world constraints.`;
     }
 
     if (type === "impact") {
-      return `📈 The impact lies in ${
-        project.domain === "ml"
-          ? "predicting outcomes and reducing uncertainty in decision-making"
-          : project.domain === "analytics"
-          ? "enabling stakeholders to make data-driven business decisions"
-          : "automating complex planning processes"
-      }, showcasing strong analytical and problem-solving capability.`;
+      return `📈 The real value of this project lies in its applicability. Instead of being a theoretical implementation, it directly aligns with how organizations make decisions — reducing uncertainty, highlighting key signals, and enabling smarter actions. This is the kind of work that moves metrics, not just code.`;
     }
   };
 
@@ -103,17 +78,15 @@ export default function Projects() {
 
     setTimeout(() => {
       setAIResponse(generateAI(project, type));
-    }, 400);
+    }, 500);
   };
 
   return (
     <section className="relative text-white py-20 px-6 overflow-hidden">
-      
-      {/* 🔥 EXACT HERO-LIKE BACKGROUND */}
+
+      {/* 🔥 EXACT HERO BACKGROUND (RADIAL GLOW CENTER) */}
       <div className="absolute inset-0 bg-[#0b0f14]">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] opacity-20"></div>
-        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_60%)]"></div>
       </div>
 
       <div className="relative z-10">
@@ -125,53 +98,48 @@ export default function Projects() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="border border-white/10 rounded-2xl p-6 bg-[#0f0f0f] hover:border-white/20 transition"
+              className="relative group rounded-2xl p-[1px] bg-gradient-to-r from-white/10 via-white/5 to-white/10 hover:from-purple-500/40 hover:via-blue-500/40 hover:to-pink-500/40 transition"
             >
-              <h3 className="text-2xl font-semibold mb-3">
-                {project.title}
-              </h3>
+              {/* CARD */}
+              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 h-full">
+                
+                <h3 className="text-2xl font-semibold mb-3">
+                  {project.title}
+                </h3>
 
-              {/* 🔥 BULLET PROOF DESCRIPTIONS */}
-              <ul className="text-gray-400 mb-4 space-y-2 text-sm">
-                {project.description.map((point, i) => (
-                  <li key={i}>• {point}</li>
-                ))}
-              </ul>
+                <ul className="text-gray-400 mb-4 space-y-2 text-sm">
+                  {project.description.map((point, i) => (
+                    <li key={i}>• {point}</li>
+                  ))}
+                </ul>
 
-              {/* TECH */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="bg-white/5 border border-white/10 px-3 py-1 text-sm rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="bg-white/5 border border-white/10 px-3 py-1 text-sm rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
 
-              {/* BUTTONS */}
-              <div className="flex flex-col gap-2">
-                <button
-                  onClick={() => handleExplain(project, "recruiter")}
-                  className="bg-[#1a1a1a] hover:bg-[#222] border border-white/10 px-4 py-2 rounded-lg transition"
-                >
-                  🎯 Recruiter View
-                </button>
-
-                <button
-                  onClick={() => handleExplain(project, "technical")}
-                  className="bg-[#1a1a1a] hover:bg-[#222] border border-white/10 px-4 py-2 rounded-lg transition"
-                >
-                  ⚙️ Technical View
-                </button>
-
-                <button
-                  onClick={() => handleExplain(project, "impact")}
-                  className="bg-[#1a1a1a] hover:bg-[#222] border border-white/10 px-4 py-2 rounded-lg transition"
-                >
-                  📈 Impact View
-                </button>
+                {/* 🔥 BUTTONS WITH GRADIENT OUTLINE */}
+                <div className="flex flex-col gap-2">
+                  {["recruiter", "technical", "impact"].map((type) => (
+                    <button
+                      key={type}
+                      onClick={() => handleExplain(project, type)}
+                      className="relative rounded-lg p-[1px] bg-gradient-to-r from-white/10 to-white/10 hover:from-purple-400/40 hover:to-blue-400/40 transition"
+                    >
+                      <span className="block bg-[#1a1a1a] px-4 py-2 rounded-lg">
+                        {type === "recruiter" && "🎯 Recruiter View"}
+                        {type === "technical" && "⚙️ Technical View"}
+                        {type === "impact" && "📈 Impact View"}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
