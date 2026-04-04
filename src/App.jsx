@@ -4,7 +4,7 @@ import About from "./components/About";
 
 function App() {
   return (
-    <div className="bg-[#0f0f0f] text-white">
+    <div className="bg-[#0f0f0f] text-white min-h-screen">
       <Navbar />
       <Hero />
       <About />
