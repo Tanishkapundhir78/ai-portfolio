@@ -1,20 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
+/* 3D flip support */
+.perspective {
+  perspective: 1000px;
+}
+
+.transform-style {
+  transform-style: preserve-3d;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* floating animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }
 
-.animate-slideDown {
-  animation: slideDown 0.4s ease-in-out;
+.animate-float {
+  animation: float 4s ease-in-out infinite;
 }
+
+/* delay for natural effect */
+.group:nth-child(1) .animate-float { animation-delay: 0s; }
+.group:nth-child(2) .animate-float { animation-delay: 0.5s; }
+.group:nth-child(3) .animate-float { animation-delay: 1s; }
+.group:nth-child(4) .animate-float { animation-delay: 1.5s; }
+.group:nth-child(5) .animate-float { animation-delay: 2s; }
+.group:nth-child(6) .animate-float { animation-delay: 2.5s; }
+.group:nth-child(7) .animate-float { animation-delay: 3s; }
+.group:nth-child(8) .animate-float { animation-delay: 3.5s; }
 
 body {
   @apply bg-[#0f0f0f] text-white;
