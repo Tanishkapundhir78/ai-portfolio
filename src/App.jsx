@@ -4,6 +4,8 @@ import About from "./components/About";
 import Projects from "./components/Projects";
 import TechnicalWriting from "./components/TechnicalWriting";
 import Certifications from "./components/Certifications";
+import Skills from
+
 function App() {
   return (
     <div className="bg-[#0f0f0f] text-white min-h-screen">
@@ -13,6 +15,7 @@ function App() {
       <Projects />
       <TechnicalWriting />
       <Certifications />
+      <Skills />
     </div>
   );
 }
