@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function SkillsRoadmap() {
-  const [activeSkill, setActiveSkill] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const skills = [
     {
@@ -18,14 +18,14 @@ export default function SkillsRoadmap() {
     },
     {
       title: "AI & Machine Learning",
-      items: ["Predictive Analysis", "Model Building", "Feature Engineering"],
+      items: ["Predictive Analysis", "Feature Engineering", "Model Building"],
     },
     {
       title: "Web Scraping",
       items: ["BeautifulSoup", "Selenium", "Requests"],
     },
     {
-      title: "Databases (DBMS)",
+      title: "Databases",
       items: ["MySQL", "MariaDB", "PostgreSQL"],
     },
     {
@@ -46,63 +46,85 @@ export default function SkillsRoadmap() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_60%)]"></div>
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto">
+      <div className="relative z-10 max-w-4xl mx-auto">
 
         {/* HEADER */}
         <h2 className="text-4xl font-bold text-center mb-6">
-          🧠 Skills Explorer
+          🧠 Skills Roadmap
         </h2>
 
         <p className="text-center text-gray-400 mb-16">
-          Click on a skill to explore tools and technologies I’ve worked with.
+          A structured journey of my technical growth.
         </p>
 
-        {/* GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {skills.map((skill, index) => (
-            <div
-              key={index}
-              onClick={() =>
-                setActiveSkill(
-                  activeSkill?.title === skill.title ? null : skill
-                )
-              }
-              className="relative group cursor-pointer rounded-2xl p-[1px] 
-              bg-gradient-to-r from-white/10 to-white/10
-              transition-all duration-300
-              hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20
-              hover:from-purple-400/50 hover:to-blue-400/50"
-            >
-              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6">
+        {/* ROADMAP */}
+        <div className="relative">
 
-                {/* TITLE */}
-                <h3 className="text-lg font-semibold mb-3">
-                  {skill.title}
-                </h3>
+          {/* CENTER LINE */}
+          <div className="absolute left-1/2 top-0 h-full w-[2px] bg-white/10"></div>
 
-                {/* MINI PREVIEW */}
-                <p className="text-gray-400 text-sm">
-                  {skill.items.slice(0, 2).join(", ")}...
-                </p>
+          {skills.map((skill, index) => {
+            const isLeft = index % 2 === 0;
 
-                {/* 🔥 EXPANDED VIEW */}
-                {activeSkill?.title === skill.title && (
-                  <div className="mt-4 animate-fadeIn">
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {skill.items.map((item, i) => (
-                        <span
-                          key={i}
-                          className="px-3 py-1 text-sm bg-white/5 border border-white/10 rounded-full"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+            return (
+              <div
+                key={index}
+                className={`relative flex items-center mb-20 ${
+                  isLeft ? "justify-start" : "justify-end"
+                }`}
+              >
+                {/* NODE */}
+                <div
+                  onClick={() =>
+                    setActiveIndex(activeIndex === index ? null : index)
+                  }
+                  className="absolute left-1/2 -translate-x-1/2 cursor-pointer z-20"
+                >
+                  <div
+                    className={`w-6 h-6 rounded-full transition-all duration-300
+                    ${
+                      activeIndex === index
+                        ? "bg-purple-500 scale-125 shadow-lg shadow-purple-500/60 animate-pulse"
+                        : "bg-white/30"
+                    }`}
+                  ></div>
+                </div>
+
+                {/* CARD */}
+                <div
+                  className={`w-[42%] p-[1px] rounded-2xl transition-all duration-300
+                  ${
+                    activeIndex === index
+                      ? "bg-gradient-to-r from-purple-400/50 to-blue-400/50 scale-105"
+                      : "bg-gradient-to-r from-white/10 to-white/10"
+                  }`}
+                >
+                  <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-5">
+
+                    <h3 className="text-lg font-semibold mb-2">
+                      {skill.title}
+                    </h3>
+
+                    {/* EXPAND */}
+                    {activeIndex === index && (
+                      <div className="mt-3 animate-slideDown">
+                        <div className="flex flex-wrap gap-2">
+                          {skill.items.map((item, i) => (
+                            <span
+                              key={i}
+                              className="px-3 py-1 text-sm bg-white/5 border border-white/10 rounded-full"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>
