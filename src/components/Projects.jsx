@@ -2,126 +2,161 @@ import { useState } from "react";
 
 const projects = [
   {
-    title: "Startup Blueprint Generator",
+    title: "Business Sales & Customer Analytics Dashboard",
     description:
-      "AI-powered system that generates complete startup plans using IBM Granite LLM.",
-    tech: ["Python", "IBM Granite", "Gradio", "Prompt Engineering"],
+      "Interactive Power BI dashboard delivering insights on sales trends, customer segmentation, and revenue optimization.",
+    tech: ["Power BI", "DAX", "SQL", "Data Modeling"],
   },
   {
-    title: "Network Intrusion Detection System",
+    title: "ML SaaS Churn Prediction Model",
     description:
-      "Machine learning system to detect cyber attacks using real-world network traffic data.",
-    tech: ["Python", "Scikit-learn", "Pandas", "ML"],
+      "End-to-end machine learning system predicting customer churn with explainability.",
+    tech: [
+      "Python",
+      "Scikit-learn",
+      "Pandas",
+      "Feature Engineering",
+      "SHAP",
+      "Model Deployment",
+    ],
   },
   {
     title: "Website Traffic Analytics Dashboard",
     description:
-      "Interactive dashboard analyzing Google Analytics data for business insights.",
-    tech: ["Power BI", "SQL", "Data Visualization"],
+      "Advanced analytics dashboard using Google Analytics data in Looker Studio.",
+    tech: ["Looker Studio", "Google Analytics", "Data Visualization"],
   },
   {
-    title: "Weather Automation Panel",
+    title: "Startup Blueprint Generator",
     description:
-      "Smart weather dashboard with AI recommendations and real-time forecasting.",
-    tech: ["Streamlit", "Python", "API Integration"],
+      "AI-powered system generating startup plans using IBM Granite and Watsonx.",
+    tech: [
+      "Python",
+      "IBM Granite",
+      "Watsonx",
+      "Prompt Engineering",
+      "Gradio",
+    ],
+  },
+  {
+    title: "Breast Cancer Analysis",
+    description:
+      "Machine learning-based medical data analysis for early cancer detection.",
+    tech: ["Python", "Pandas", "Seaborn", "Logistic Regression", "EDA"],
   },
 ];
 
 export default function Projects() {
   const [activeProject, setActiveProject] = useState(null);
   const [aiResponse, setAIResponse] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const generateExplanation = (project, type) => {
-    if (type === "recruiter") {
-      return `🎯 ${project.title} focuses on solving real-world problems using ${project.tech[0]}. It highlights strong problem-solving and practical implementation skills.`;
-    }
-
-    if (type === "technical") {
-      return `⚙️ Built using ${project.tech.join(
-        ", "
-      )}, this project includes scalable architecture, efficient data pipelines, and optimized logic.`;
-    }
-
-    if (type === "impact") {
-      return `📈 This project enables better decision-making, improves efficiency, and demonstrates the ability to translate complex problems into impactful solutions.`;
-    }
-  };
-
-  const handleExplain = (project, type) => {
+  // 🔥 REAL AI CALL
+  const getAIExplanation = async (project, type) => {
+    setLoading(true);
     setActiveProject(project);
-    setAIResponse("Thinking... 🤖");
 
-    setTimeout(() => {
-      setAIResponse(generateExplanation(project, type));
-    }, 700);
+    try {
+      const response = await fetch("http://localhost:5000/explain", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          project,
+          type,
+        }),
+      });
+
+      const data = await response.json();
+      setAIResponse(data.result);
+    } catch (error) {
+      setAIResponse("⚠️ AI not connected. Start backend server.");
+    }
+
+    setLoading(false);
   };
 
   return (
     <section className="bg-[#0f0f0f] text-white py-20 px-6">
-      <h2 className="text-4xl font-bold text-center mb-12">
+      <h2 className="text-4xl font-bold text-center mb-16">
         🚀 Projects
       </h2>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* GRID */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
         {projects.map((project, index) => (
           <div
             key={index}
-            className="bg-[#0f0f0f] border border-white/10 p-6 rounded-2xl hover:border-purple-500/40 hover:shadow-lg hover:shadow-purple-500/10 transition duration-300"
+            className="relative group rounded-2xl p-[1px] bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20"
           >
-            <h3 className="text-2xl font-semibold mb-2">
-              {project.title}
-            </h3>
+            {/* Glass Card */}
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 h-full transition duration-300 group-hover:shadow-xl group-hover:shadow-purple-500/10">
+              
+              <h3 className="text-2xl font-semibold mb-2">
+                {project.title}
+              </h3>
 
-            <p className="text-gray-400 mb-4">
-              {project.description}
-            </p>
+              <p className="text-gray-400 mb-4">
+                {project.description}
+              </p>
 
-            <div className="flex flex-wrap gap-2 mb-4">
-              {project.tech.map((tech, i) => (
-                <span
-                  key={i}
-                  className="bg-white/5 text-gray-300 px-3 py-1 rounded-full text-sm border border-white/10"
+              {/* TECH */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.tech.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="bg-white/5 border border-white/10 px-3 py-1 text-sm rounded-full"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* BUTTONS */}
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={() => getAIExplanation(project, "recruiter")}
+                  className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-400/40 px-4 py-2 rounded-lg transition"
                 >
-                  {tech}
-                </span>
-              ))}
-            </div>
+                  🎯 Recruiter View
+                </button>
 
-            {/* Buttons - Subtle Dark Theme */}
-            <div className="flex flex-col gap-2">
-              <button
-                onClick={() => handleExplain(project, "recruiter")}
-                className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-400/40 px-4 py-2 rounded-lg transition"
-              >
-                🎯 Recruiter View
-              </button>
+                <button
+                  onClick={() => getAIExplanation(project, "technical")}
+                  className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-400/40 px-4 py-2 rounded-lg transition"
+                >
+                  ⚙️ Technical View
+                </button>
 
-              <button
-                onClick={() => handleExplain(project, "technical")}
-                className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-400/40 px-4 py-2 rounded-lg transition"
-              >
-                ⚙️ Technical View
-              </button>
-
-              <button
-                onClick={() => handleExplain(project, "impact")}
-                className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-green-400/40 px-4 py-2 rounded-lg transition"
-              >
-                📈 Impact View
-              </button>
+                <button
+                  onClick={() => getAIExplanation(project, "impact")}
+                  className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-green-400/40 px-4 py-2 rounded-lg transition"
+                >
+                  📈 Impact View
+                </button>
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* AI Response */}
+      {/* AI RESPONSE PANEL */}
       {activeProject && (
-        <div className="mt-12 bg-[#0f0f0f] border border-white/10 p-6 rounded-2xl">
+        <div className="mt-16 bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-2xl">
           <h3 className="text-2xl font-semibold mb-4">
             🧠 AI Explanation: {activeProject.title}
           </h3>
 
-          <p className="text-gray-300">{aiResponse}</p>
+          {loading ? (
+            <p className="text-gray-400 animate-pulse">
+              Thinking... 🤖
+            </p>
+          ) : (
+            <p className="text-gray-300 whitespace-pre-line">
+              {aiResponse}
+            </p>
+          )}
         </div>
       )}
     </section>
