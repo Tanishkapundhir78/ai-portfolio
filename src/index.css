@@ -1,27 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* perspective for 3D */
+/* Perspective */
 .perspective {
   perspective: 1000px;
 }
 
-/* enable 3D */
-.preserve-3d {
+/* Enable 3D transform */
+.transform-style {
   transform-style: preserve-3d;
 }
 
-/* flip rotation */
-.rotate-y-180 {
-  transform: rotateY(180deg);
-}
-
-/* hide back when flipped */
+/* Backface hidden */
 .backface-hidden {
   backface-visibility: hidden;
 }
 
-/* floating animation */
+/* Flip */
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Floating Animation */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
@@ -32,7 +32,7 @@
   animation: float 4s ease-in-out infinite;
 }
 
-/* delay for natural floating */
+/* Animation delays for natural movement */
 .group:nth-child(1) .animate-float { animation-delay: 0s; }
 .group:nth-child(2) .animate-float { animation-delay: 0.5s; }
 .group:nth-child(3) .animate-float { animation-delay: 1s; }
@@ -41,6 +41,7 @@
 .group:nth-child(6) .animate-float { animation-delay: 2.5s; }
 .group:nth-child(7) .animate-float { animation-delay: 3s; }
 .group:nth-child(8) .animate-float { animation-delay: 3.5s; }
+
 body {
   @apply bg-[#0f0f0f] text-white;
 }
