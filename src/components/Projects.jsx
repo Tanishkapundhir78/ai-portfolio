@@ -3,15 +3,21 @@ import { useState } from "react";
 const projects = [
   {
     title: "Business Sales & Customer Analytics Dashboard",
-    description:
-      "Interactive Power BI dashboard delivering insights on sales trends and customer segmentation.",
+    description: [
+      "Designed an end-to-end Power BI dashboard to track KPIs like revenue, customer retention, and sales trends.",
+      "Performed data modeling and transformation using DAX and SQL to ensure accurate and scalable reporting.",
+      "Enabled stakeholders to identify high-value customers and optimize business strategies.",
+    ],
     tech: ["Power BI", "DAX", "SQL", "Data Modeling"],
     domain: "analytics",
   },
   {
     title: "ML SaaS Churn Prediction Model",
-    description:
-      "Machine learning system predicting customer churn with explainability.",
+    description: [
+      "Built a machine learning pipeline to predict customer churn using structured SaaS data.",
+      "Applied feature engineering and model tuning to improve prediction accuracy and reduce overfitting.",
+      "Used SHAP for model interpretability, helping understand key churn-driving factors.",
+    ],
     tech: [
       "Python",
       "Scikit-learn",
@@ -23,22 +29,31 @@ const projects = [
   },
   {
     title: "Website Traffic Analytics Dashboard",
-    description:
-      "Dashboard using Google Analytics data in Looker Studio.",
+    description: [
+      "Developed an interactive dashboard in Looker Studio using Google Analytics data.",
+      "Analyzed traffic sources, user behavior, and conversion funnels.",
+      "Helped identify high-performing channels and optimize marketing decisions.",
+    ],
     tech: ["Looker Studio", "Google Analytics", "Data Visualization"],
     domain: "analytics",
   },
   {
     title: "Startup Blueprint Generator",
-    description:
-      "AI-powered startup planning tool using IBM Granite.",
+    description: [
+      "Built an AI-driven system to generate structured startup plans using IBM Granite.",
+      "Designed prompts to generate business models, revenue strategies, and market insights.",
+      "Focused on real-world usability with clear and actionable outputs.",
+    ],
     tech: ["Python", "IBM Granite", "Watsonx", "Prompt Engineering"],
     domain: "ai",
   },
   {
     title: "Breast Cancer Analysis",
-    description:
-      "ML-based medical dataset analysis for prediction and insights.",
+    description: [
+      "Performed exploratory data analysis on medical datasets to identify key patterns.",
+      "Built classification models for early cancer prediction.",
+      "Evaluated model performance using metrics like accuracy and precision.",
+    ],
     tech: ["Python", "Pandas", "EDA", "Logistic Regression"],
     domain: "ml",
   },
@@ -49,36 +64,36 @@ export default function Projects() {
   const [aiResponse, setAIResponse] = useState("");
 
   const generateAI = (project, type) => {
-    const tech = project.tech.join(", ");
-
     if (type === "recruiter") {
-      return `🎯 ${project.title} focuses on ${
+      return `🎯 ${project.title} demonstrates strong ability to solve real-world problems using ${
         project.domain === "ml"
-          ? "predictive modeling"
+          ? "machine learning and data modeling"
           : project.domain === "analytics"
-          ? "business insights"
-          : "AI-driven automation"
-      } using ${tech}. It highlights strong problem-solving and real-world implementation.`;
+          ? "data visualization and business analytics"
+          : "AI-driven system design"
+      }. It reflects practical implementation skills and a focus on measurable outcomes.`;
     }
 
     if (type === "technical") {
-      return `⚙️ Built using ${tech}, this project includes ${
+      return `⚙️ The project leverages ${project.tech.join(
+        ", "
+      )}. It includes structured data handling, optimized workflows, and ${
         project.domain === "ml"
-          ? "feature engineering, model training, and evaluation"
+          ? "model training, evaluation, and interpretability techniques"
           : project.domain === "analytics"
-          ? "data modeling, KPIs, and visualization"
-          : "LLM integration and prompt engineering"
-      }, ensuring performance and scalability.`;
+          ? "KPI tracking, dashboard design, and data transformation"
+          : "prompt engineering and AI integration"
+      }.`;
     }
 
     if (type === "impact") {
-      return `📈 This project delivers impact by ${
+      return `📈 The impact lies in ${
         project.domain === "ml"
-          ? "predicting outcomes and reducing risks"
+          ? "predicting outcomes and reducing uncertainty in decision-making"
           : project.domain === "analytics"
-          ? "enabling data-driven decisions"
-          : "automating workflows"
-      }, showcasing strong analytical thinking.`;
+          ? "enabling stakeholders to make data-driven business decisions"
+          : "automating complex planning processes"
+      }, showcasing strong analytical and problem-solving capability.`;
     }
   };
 
@@ -94,13 +109,13 @@ export default function Projects() {
   return (
     <section className="relative text-white py-20 px-6 overflow-hidden">
       
-      {/* 🔥 BACKGROUND GRADIENT GLOW */}
-      <div className="absolute inset-0 bg-[#0f0f0f]">
-        <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-purple-600/20 blur-[120px] rounded-full"></div>
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-600/20 blur-[120px] rounded-full"></div>
+      {/* 🔥 EXACT HERO-LIKE BACKGROUND */}
+      <div className="absolute inset-0 bg-[#0b0f14]">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] opacity-20"></div>
+        </div>
       </div>
 
-      {/* CONTENT */}
       <div className="relative z-10">
         <h2 className="text-4xl font-bold text-center mb-16">
           🚀 Projects
@@ -110,54 +125,53 @@ export default function Projects() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="relative group rounded-2xl p-[1px] bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20"
+              className="border border-white/10 rounded-2xl p-6 bg-[#0f0f0f] hover:border-white/20 transition"
             >
-              {/* CARD */}
-              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 h-full transition duration-300 group-hover:shadow-xl group-hover:shadow-purple-500/10">
-                
-                <h3 className="text-2xl font-semibold mb-2">
-                  {project.title}
-                </h3>
+              <h3 className="text-2xl font-semibold mb-3">
+                {project.title}
+              </h3>
 
-                <p className="text-gray-400 mb-4">
-                  {project.description}
-                </p>
+              {/* 🔥 BULLET PROOF DESCRIPTIONS */}
+              <ul className="text-gray-400 mb-4 space-y-2 text-sm">
+                {project.description.map((point, i) => (
+                  <li key={i}>• {point}</li>
+                ))}
+              </ul>
 
-                {/* TECH */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="bg-white/5 border border-white/10 px-3 py-1 text-sm rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* 🔥 CLEAN BUTTONS (NO GLASS) */}
-                <div className="flex flex-col gap-2">
-                  <button
-                    onClick={() => handleExplain(project, "recruiter")}
-                    className="bg-[#1a1a1a] hover:bg-[#222] border border-white/10 hover:border-purple-400/40 px-4 py-2 rounded-lg transition"
+              {/* TECH */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.tech.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="bg-white/5 border border-white/10 px-3 py-1 text-sm rounded-full"
                   >
-                    🎯 Recruiter View
-                  </button>
+                    {tech}
+                  </span>
+                ))}
+              </div>
 
-                  <button
-                    onClick={() => handleExplain(project, "technical")}
-                    className="bg-[#1a1a1a] hover:bg-[#222] border border-white/10 hover:border-blue-400/40 px-4 py-2 rounded-lg transition"
-                  >
-                    ⚙️ Technical View
-                  </button>
+              {/* BUTTONS */}
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={() => handleExplain(project, "recruiter")}
+                  className="bg-[#1a1a1a] hover:bg-[#222] border border-white/10 px-4 py-2 rounded-lg transition"
+                >
+                  🎯 Recruiter View
+                </button>
 
-                  <button
-                    onClick={() => handleExplain(project, "impact")}
-                    className="bg-[#1a1a1a] hover:bg-[#222] border border-white/10 hover:border-green-400/40 px-4 py-2 rounded-lg transition"
-                  >
-                    📈 Impact View
-                  </button>
-                </div>
+                <button
+                  onClick={() => handleExplain(project, "technical")}
+                  className="bg-[#1a1a1a] hover:bg-[#222] border border-white/10 px-4 py-2 rounded-lg transition"
+                >
+                  ⚙️ Technical View
+                </button>
+
+                <button
+                  onClick={() => handleExplain(project, "impact")}
+                  className="bg-[#1a1a1a] hover:bg-[#222] border border-white/10 px-4 py-2 rounded-lg transition"
+                >
+                  📈 Impact View
+                </button>
               </div>
             </div>
           ))}
