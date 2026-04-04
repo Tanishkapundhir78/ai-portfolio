@@ -4,11 +4,8 @@ const About = () => {
   return (
     <section
       id="about"
-      className="min-h-screen flex items-center justify-center px-6 bg-[#111111] relative"
+      className="min-h-screen flex items-center justify-center px-6 bg-[#0f0f0f]"
     >
-      {/* Top Divider */}
-      <div className="absolute top-0 left-0 w-full h-px bg-white/10"></div>
-
       <motion.div
         initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
