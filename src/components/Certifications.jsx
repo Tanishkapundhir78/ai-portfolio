@@ -1,24 +1,38 @@
 export default function Certifications() {
   const certs = [
     {
+      title: "Getting Started with Artificial Intelligence",
+      issuer: "IBM SkillsBuild",
+      description:
+        "Built foundational understanding of AI concepts including machine learning workflows, real-world applications, and ethical considerations.",
+      link: "#",
+    },
+    {
+      title: "Linux Essentials",
+      issuer: "LnB (Linux & Networking Basics)",
+      description:
+        "Gained hands-on exposure to Linux commands, file systems, and system operations essential for development and data workflows.",
+      link: "#",
+    },
+    {
+      title: "Data Analytics Fundamentals",
+      issuer: "AWS",
+      description:
+        "Learned core analytics concepts including data collection, processing, visualization, and decision-making using cloud-based tools.",
+      link: "#",
+    },
+    {
+      title: "Introduction to Amazon Athena",
+      issuer: "AWS",
+      description:
+        "Explored serverless querying of data using SQL on AWS Athena, focusing on efficient analysis of large-scale datasets.",
+      link: "#",
+    },
+    {
       title: "Google Analytics Certification",
       issuer: "Google",
       description:
-        "Validated understanding of web analytics, traffic analysis, and user behavior tracking using Google Analytics.",
-      link: "#",
-    },
-    {
-      title: "IBM SkillsBuild AI Internship",
-      issuer: "IBM / AICTE / Edunet",
-      description:
-        "Worked on real-world AI use cases and gained hands-on experience with machine learning concepts and tools.",
-      link: "#",
-    },
-    {
-      title: "Data Analytics & Visualization",
-      issuer: "Self / Project-Based",
-      description:
-        "Practical experience building dashboards and extracting insights using Power BI, SQL, and real datasets.",
+        "Validated expertise in tracking user behavior, analyzing traffic sources, and deriving actionable insights from web data.",
       link: "#",
     },
   ];
@@ -39,7 +53,7 @@ export default function Certifications() {
         </h2>
 
         <p className="text-center text-gray-400 mb-16 max-w-2xl mx-auto">
-          Certifications and experiences that validate my skills in data, analytics, and AI.
+          A collection of certifications validating my skills across AI, cloud, analytics, and systems.
         </p>
 
         {/* GRID */}
@@ -57,7 +71,7 @@ export default function Certifications() {
 
                 <div>
                   {/* TITLE */}
-                  <h3 className="text-xl font-semibold mb-2">
+                  <h3 className="text-lg font-semibold mb-2">
                     {cert.title}
                   </h3>
 
