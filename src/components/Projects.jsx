@@ -29,35 +29,31 @@ const projects = [
 
 export default function Projects() {
   const [activeProject, setActiveProject] = useState(null);
-  const [mode, setMode] = useState("recruiter");
   const [aiResponse, setAIResponse] = useState("");
 
   const generateExplanation = (project, type) => {
     if (type === "recruiter") {
-      return `🎯 This project, ${project.title}, focuses on solving real-world problems using ${
-        project.tech[0]
-      }. It demonstrates strong problem-solving skills and practical implementation.`;
+      return `🎯 ${project.title} focuses on solving real-world problems using ${project.tech[0]}. It highlights strong problem-solving and practical implementation skills.`;
     }
 
     if (type === "technical") {
       return `⚙️ Built using ${project.tech.join(
         ", "
-      )}, this project includes scalable architecture, data processing pipelines, and optimized logic for performance.`;
+      )}, this project includes scalable architecture, efficient data pipelines, and optimized logic.`;
     }
 
     if (type === "impact") {
-      return `📈 This project improves efficiency, enables data-driven decisions, and showcases the ability to translate complex problems into actionable solutions.`;
+      return `📈 This project enables better decision-making, improves efficiency, and demonstrates the ability to translate complex problems into impactful solutions.`;
     }
   };
 
   const handleExplain = (project, type) => {
     setActiveProject(project);
-    setMode(type);
     setAIResponse("Thinking... 🤖");
 
     setTimeout(() => {
       setAIResponse(generateExplanation(project, type));
-    }, 800);
+    }, 700);
   };
 
   return (
@@ -70,7 +66,7 @@ export default function Projects() {
         {projects.map((project, index) => (
           <div
             key={index}
-            className="bg-[#1a1a1a] p-6 rounded-2xl shadow-lg hover:scale-105 transition duration-300"
+            className="bg-[#0f0f0f] border border-white/10 p-6 rounded-2xl hover:border-purple-500/40 hover:shadow-lg hover:shadow-purple-500/10 transition duration-300"
           >
             <h3 className="text-2xl font-semibold mb-2">
               {project.title}
@@ -84,43 +80,43 @@ export default function Projects() {
               {project.tech.map((tech, i) => (
                 <span
                   key={i}
-                  className="bg-purple-600/20 text-purple-400 px-3 py-1 rounded-full text-sm"
+                  className="bg-white/5 text-gray-300 px-3 py-1 rounded-full text-sm border border-white/10"
                 >
                   {tech}
                 </span>
               ))}
             </div>
 
-            {/* AI Buttons */}
+            {/* Buttons - Subtle Dark Theme */}
             <div className="flex flex-col gap-2">
               <button
                 onClick={() => handleExplain(project, "recruiter")}
-                className="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg"
+                className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-400/40 px-4 py-2 rounded-lg transition"
               >
-                🎯 Explain for Recruiter
+                🎯 Recruiter View
               </button>
 
               <button
                 onClick={() => handleExplain(project, "technical")}
-                className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg"
+                className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-400/40 px-4 py-2 rounded-lg transition"
               >
-                ⚙️ Technical Breakdown
+                ⚙️ Technical View
               </button>
 
               <button
                 onClick={() => handleExplain(project, "impact")}
-                className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg"
+                className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-green-400/40 px-4 py-2 rounded-lg transition"
               >
-                📈 Business Impact
+                📈 Impact View
               </button>
             </div>
           </div>
         ))}
       </div>
 
-      {/* AI Response Panel */}
+      {/* AI Response */}
       {activeProject && (
-        <div className="mt-12 bg-[#1a1a1a] p-6 rounded-2xl border border-purple-500/20">
+        <div className="mt-12 bg-[#0f0f0f] border border-white/10 p-6 rounded-2xl">
           <h3 className="text-2xl font-semibold mb-4">
             🧠 AI Explanation: {activeProject.title}
           </h3>
