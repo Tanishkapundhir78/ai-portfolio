@@ -1,7 +1,6 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, useGLTF, Environment } from "@react-three/drei";
 import { Suspense, useRef } from "react";
-import * as THREE from "three";
 
 // 🤖 Robot
 function Robot({ scrollProgress, mouse }) {
@@ -22,35 +21,68 @@ function Robot({ scrollProgress, mouse }) {
   return <primitive ref={ref} object={scene} scale={1.5} />;
 }
 
-// 🔲 CUSTOM GRID (REAL DEPTH)
-function DeepGrid({ mouse }) {
-  const ref = useRef();
+// 🔲 Grid Plane (Reusable)
+function GridPlane({ position, rotation }) {
+  return (
+    <gridHelper
+      args={[40, 40, "#888", "#333"]}
+      position={position}
+      rotation={rotation}
+    />
+  );
+}
+
+// 🧊 GRID ROOM
+function GridRoom({ mouse }) {
+  const groupRef = useRef();
 
   useFrame(() => {
-    if (!ref.current) return;
+    if (!groupRef.current) return;
 
-    // Mouse tilt
-    ref.current.rotation.x = -Math.PI / 2.5 + mouse.y * 0.15;
-    ref.current.rotation.y = mouse.x * 0.15;
+    // Whole room reacts to mouse slightly
+    groupRef.current.rotation.y = mouse.x * 0.1;
+    groupRef.current.rotation.x = mouse.y * 0.05;
   });
 
   return (
-    <gridHelper
-      ref={ref}
-      args={[50, 50, "#888", "#444"]}
-      position={[0, -2, 0]}
-    />
+    <group ref={groupRef}>
+
+      {/* FLOOR */}
+      <GridPlane
+        position={[0, -2, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+      />
+
+      {/* BACK WALL */}
+      <GridPlane
+        position={[0, 0, -10]}
+        rotation={[0, 0, 0]}
+      />
+
+      {/* LEFT WALL */}
+      <GridPlane
+        position={[-10, 0, 0]}
+        rotation={[0, Math.PI / 2, 0]}
+      />
+
+      {/* RIGHT WALL */}
+      <GridPlane
+        position={[10, 0, 0]}
+        rotation={[0, -Math.PI / 2, 0]}
+      />
+
+    </group>
   );
 }
 
 const ThreeScene = ({ scrollProgress, mouse }) => {
   return (
     <Canvas
-      camera={{ position: [0, 3, 8], fov: 55 }}
+      camera={{ position: [0, 2, 8], fov: 55 }}
       style={{ height: "100vh", width: "100%" }}
     >
-      {/* 🌫️ Fog for depth */}
-      <fog attach="fog" args={["#000000", 5, 20]} />
+      {/* 🌫️ Fog (depth) */}
+      <fog attach="fog" args={["#000000", 5, 25]} />
 
       {/* Lights */}
       <ambientLight intensity={0.6} />
@@ -58,8 +90,8 @@ const ThreeScene = ({ scrollProgress, mouse }) => {
 
       <Environment preset="city" />
 
-      {/* 🔲 Deep Grid */}
-      <DeepGrid mouse={mouse} />
+      {/* 🧊 GRID ROOM */}
+      <GridRoom mouse={mouse} />
 
       {/* 🤖 Robot */}
       <Suspense fallback={null}>
@@ -67,6 +99,7 @@ const ThreeScene = ({ scrollProgress, mouse }) => {
           <Robot scrollProgress={scrollProgress} mouse={mouse} />
         </Float>
       </Suspense>
+
     </Canvas>
   );
 };
