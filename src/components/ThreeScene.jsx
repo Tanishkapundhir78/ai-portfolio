@@ -1,8 +1,9 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Grid, Float, useGLTF, Environment } from "@react-three/drei";
+import { Float, useGLTF, Environment } from "@react-three/drei";
 import { Suspense, useRef } from "react";
+import * as THREE from "three";
 
-// 🤖 Robot Component
+// 🤖 Robot
 function Robot({ scrollProgress, mouse }) {
   const { scene } = useGLTF("/robot.glb");
   const ref = useRef();
@@ -10,49 +11,34 @@ function Robot({ scrollProgress, mouse }) {
   useFrame(() => {
     if (!ref.current) return;
 
-    // 🎯 Scroll push
+    // Scroll push
     ref.current.position.y = scrollProgress * 3;
 
-    // 🖱️ Mouse interaction (smooth follow)
+    // Mouse interaction
     ref.current.rotation.y += (mouse.x * 0.5 - ref.current.rotation.y) * 0.05;
     ref.current.rotation.x += (-mouse.y * 0.3 - ref.current.rotation.x) * 0.05;
   });
 
-  return (
-    <primitive
-      ref={ref}
-      object={scene}
-      scale={1.5}
-      position={[0, 0, 0]}
-    />
-  );
+  return <primitive ref={ref} object={scene} scale={1.5} />;
 }
 
-// 🔲 Grid Component (interactive)
-function AnimatedGrid({ mouse }) {
+// 🔲 CUSTOM GRID (REAL DEPTH)
+function DeepGrid({ mouse }) {
   const ref = useRef();
 
   useFrame(() => {
     if (!ref.current) return;
 
-    // Subtle tilt based on mouse
-    ref.current.rotation.x = -Math.PI / 2 + mouse.y * 0.2;
-    ref.current.rotation.y = mouse.x * 0.2;
+    // Mouse tilt
+    ref.current.rotation.x = -Math.PI / 2.5 + mouse.y * 0.15;
+    ref.current.rotation.y = mouse.x * 0.15;
   });
 
   return (
-    <Grid
+    <gridHelper
       ref={ref}
-      args={[30, 30]}
-      cellSize={1}
-      cellThickness={0.6}
-      cellColor="#444"
-      sectionSize={5}
-      sectionThickness={1}
-      sectionColor="#888"
-      fadeDistance={40}
-      fadeStrength={1}
-      position={[0, -1, 0]}
+      args={[50, 50, "#888", "#444"]}
+      position={[0, -2, 0]}
     />
   );
 }
@@ -60,20 +46,22 @@ function AnimatedGrid({ mouse }) {
 const ThreeScene = ({ scrollProgress, mouse }) => {
   return (
     <Canvas
-      camera={{ position: [0, 2, 6], fov: 50 }}
+      camera={{ position: [0, 3, 8], fov: 55 }}
       style={{ height: "100vh", width: "100%" }}
     >
-      {/* Lights */}
-      <ambientLight intensity={0.7} />
-      <directionalLight position={[2, 5, 2]} intensity={1.2} />
+      {/* 🌫️ Fog for depth */}
+      <fog attach="fog" args={["#000000", 5, 20]} />
 
-      {/* Environment */}
+      {/* Lights */}
+      <ambientLight intensity={0.6} />
+      <directionalLight position={[5, 8, 5]} intensity={1.2} />
+
       <Environment preset="city" />
 
-      {/* Grid */}
-      <AnimatedGrid mouse={mouse} />
+      {/* 🔲 Deep Grid */}
+      <DeepGrid mouse={mouse} />
 
-      {/* Robot */}
+      {/* 🤖 Robot */}
       <Suspense fallback={null}>
         <Float speed={2} rotationIntensity={0.3} floatIntensity={1}>
           <Robot scrollProgress={scrollProgress} mouse={mouse} />
