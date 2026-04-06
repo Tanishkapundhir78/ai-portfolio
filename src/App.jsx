@@ -6,6 +6,7 @@ import TechnicalWriting from "./components/TechnicalWriting";
 import Certifications from "./components/Certifications";
 import Skills from "./components/Skills";
 import Internships from "./components/Internships";
+import Contacts from "./components/Contacts";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Certifications />
       <Skills />
       <Internships />
+      <Contacts />
     </div>
   );
 }
