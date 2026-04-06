@@ -2,79 +2,55 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, useGLTF, Environment } from "@react-three/drei";
 import { Suspense, useRef } from "react";
 
-// 🤖 Robot
-function Robot({ scrollProgress, mouse }) {
+// 🤖 Robot (scroll-based only)
+function Robot({ scrollProgress }) {
   const { scene } = useGLTF("/robot.glb");
   const ref = useRef();
 
   useFrame(() => {
     if (!ref.current) return;
 
-    // 🔼 Move up on scroll
-    ref.current.position.y = scrollProgress * 3;
+    // Move slightly upward
+    ref.current.position.y = scrollProgress * 1.5;
 
-    // 🔄 Flip when scrolling down
+    // 🔄 Flip ONLY once (0 → 180°)
     ref.current.rotation.y = Math.PI * scrollProgress;
-
-    // 🖱️ Mouse interaction
-    ref.current.rotation.y += (mouse.x * 0.3 - ref.current.rotation.y) * 0.05;
-    ref.current.rotation.x += (-mouse.y * 0.2 - ref.current.rotation.x) * 0.05;
   });
 
-  return <primitive ref={ref} object={scene} scale={1.5} />;
-}
-
-// 🔲 Grid Plane
-function GridPlane({ position, rotation }) {
   return (
-    <gridHelper
-      args={[40, 40, "#888", "#333"]}
-      position={position}
-      rotation={rotation}
+    <primitive
+      ref={ref}
+      object={scene}
+      scale={1.2}
+      position={[2.5, 1.2, 0]} // 👉 beside name
     />
   );
 }
 
-// 🧊 GRID ROOM (NO BACK WALL)
-function GridRoom({ mouse }) {
+// 🔲 CLEAN GRID FLOOR
+function FloorGrid({ scrollProgress }) {
   const ref = useRef();
 
   useFrame(() => {
     if (!ref.current) return;
 
-    ref.current.rotation.y = mouse.x * 0.1;
-    ref.current.rotation.x = mouse.y * 0.05;
+    // Subtle scroll-based tilt (instead of mouse)
+    ref.current.rotation.x = -Math.PI / 2.5 + scrollProgress * 0.2;
   });
 
   return (
-    <group ref={ref}>
-
-      {/* FLOOR */}
-      <GridPlane
-        position={[0, -2, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      />
-
-      {/* LEFT WALL */}
-      <GridPlane
-        position={[-10, 0, 0]}
-        rotation={[0, Math.PI / 2, 0]}
-      />
-
-      {/* RIGHT WALL */}
-      <GridPlane
-        position={[10, 0, 0]}
-        rotation={[0, -Math.PI / 2, 0]}
-      />
-
-    </group>
+    <gridHelper
+      ref={ref}
+      args={[50, 50, "#888", "#333"]}
+      position={[0, -2, 0]}
+    />
   );
 }
 
-const ThreeScene = ({ scrollProgress, mouse }) => {
+const ThreeScene = ({ scrollProgress }) => {
   return (
     <Canvas camera={{ position: [0, 2, 8], fov: 55 }}>
-      {/* Fog */}
+      {/* Depth fog */}
       <fog attach="fog" args={["#000000", 5, 25]} />
 
       {/* Lights */}
@@ -83,11 +59,13 @@ const ThreeScene = ({ scrollProgress, mouse }) => {
 
       <Environment preset="city" />
 
-      <GridRoom mouse={mouse} />
+      {/* Grid */}
+      <FloorGrid scrollProgress={scrollProgress} />
 
+      {/* Robot */}
       <Suspense fallback={null}>
-        <Float speed={2} rotationIntensity={0.3} floatIntensity={1}>
-          <Robot scrollProgress={scrollProgress} mouse={mouse} />
+        <Float speed={1.5} rotationIntensity={0} floatIntensity={0.5}>
+          <Robot scrollProgress={scrollProgress} />
         </Float>
       </Suspense>
     </Canvas>
