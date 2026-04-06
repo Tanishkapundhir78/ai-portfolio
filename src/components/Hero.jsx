@@ -4,8 +4,54 @@ const Hero = () => {
   return (
     <section className="h-screen flex flex-col md:flex-row items-center justify-center px-6 relative overflow-hidden bg-[#0f0f0f]">
 
-      {/* Subtle Glow (Charcoal theme) */}
-      <div className="absolute w-[500px] h-[500px] bg-white/5 blur-3xl rounded-full top-1/3 left-1/3"></div>
+      {/* 🔥 ANIMATED MESH BACKGROUND */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+
+        {/* Blob 1 */}
+        <motion.div
+          animate={{
+            x: [0, 100, -50, 0],
+            y: [0, -80, 60, 0],
+            scale: [1, 1.2, 0.9, 1],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute w-[500px] h-[500px] bg-purple-500 opacity-20 blur-[120px] rounded-full top-[-100px] left-[-100px]"
+        />
+
+        {/* Blob 2 */}
+        <motion.div
+          animate={{
+            x: [0, -120, 80, 0],
+            y: [0, 100, -60, 0],
+            scale: [1, 0.8, 1.3, 1],
+          }}
+          transition={{
+            duration: 14,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute w-[500px] h-[500px] bg-blue-500 opacity-20 blur-[120px] rounded-full bottom-[-100px] right-[-100px]"
+        />
+
+        {/* Blob 3 (extra depth) */}
+        <motion.div
+          animate={{
+            x: [0, 60, -60, 0],
+            y: [0, -40, 40, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute w-[400px] h-[400px] bg-pink-500 opacity-10 blur-[100px] rounded-full top-[30%] left-[40%]"
+        />
+
+      </div>
 
       {/* LEFT SIDE (TEXT) */}
       <motion.div
@@ -14,7 +60,6 @@ const Hero = () => {
         transition={{ duration: 1 }}
         className="flex-1 text-center md:text-left z-10"
       >
-        {/* Intro */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -24,7 +69,6 @@ const Hero = () => {
           👋 Hello, I'm
         </motion.p>
 
-        {/* Name */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -34,7 +78,6 @@ const Hero = () => {
           Tanishka
         </motion.h1>
 
-        {/* Role */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -44,7 +87,6 @@ const Hero = () => {
           Data Analyst 📊
         </motion.h2>
 
-        {/* ✨ UNIQUE TAGLINE */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,7 +97,6 @@ const Hero = () => {
           and craft data stories that actually drive action.
         </motion.p>
 
-        {/* Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
