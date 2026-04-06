@@ -1,4 +1,4 @@
-export default function SkillsRoadmap() {
+export default function Skills() {
   const skills = [
     { title: "Languages", items: ["Python", "R", "SQL"] },
     { title: "Data Handling", items: ["NumPy", "Pandas", "Matplotlib", "Seaborn"] },
