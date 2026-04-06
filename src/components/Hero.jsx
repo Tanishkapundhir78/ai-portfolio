@@ -37,7 +37,7 @@ const Hero = () => {
     <section
       ref={ref}
       onMouseMove={handleMouseMove}
-      className="h-[200vh] relative bg-black overflow-hidden"
+      className="h-screen relative bg-black overflow-hidden"
     >
 
       {/* 🌌 3D BACKGROUND */}
@@ -68,7 +68,7 @@ const Hero = () => {
     className="text-3xl md:text-4xl mt-6 text-gray-300"
     style={{ fontFamily: "Bodoni MT, Times New Roman, serif" }}
   >
-    Data Analyst 📊
+    Data Analyst 
   </h2>
 
   {/* TAGLINE */}
