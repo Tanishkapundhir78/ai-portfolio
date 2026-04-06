@@ -27,7 +27,7 @@ export default function Contact() {
 
             {/* EMAIL */}
             <p className="text-lg mb-6">
-              📩 tanishka.email@example.com
+              📩 tanishkapundhir8@gmail.com
             </p>
 
             {/* BUTTONS */}
