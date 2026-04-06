@@ -4,7 +4,9 @@ import ThreeScene from "./ThreeScene";
 
 const Hero = () => {
   const ref = useRef(null);
+
   const [scrollValue, setScrollValue] = useState(0);
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -14,7 +16,7 @@ const Hero = () => {
   // 🎯 Text animation
   const textY = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
-  // 🔥 Convert motion value → normal state (VERY IMPORTANT FIX)
+  // 🔥 Sync scroll → state
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (v) => {
       setScrollValue(v);
@@ -23,15 +25,24 @@ const Hero = () => {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
+  // 🖱️ Mouse tracking
+  const handleMouseMove = (e) => {
+    const x = (e.clientX / window.innerWidth) * 2 - 1;
+    const y = (e.clientY / window.innerHeight) * 2 - 1;
+
+    setMouse({ x, y });
+  };
+
   return (
     <section
       ref={ref}
+      onMouseMove={handleMouseMove}
       className="h-[200vh] relative bg-black overflow-hidden"
     >
 
       {/* 🌌 3D BACKGROUND */}
       <div className="absolute inset-0 z-0">
-        <ThreeScene scrollProgress={scrollValue} />
+        <ThreeScene scrollProgress={scrollValue} mouse={mouse} />
       </div>
 
       {/* 🌟 TEXT */}
