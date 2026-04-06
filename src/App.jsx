@@ -21,6 +21,4 @@ function App() {
     </div>
   );
 }
-import Internships from "./components/Internships";
-
 export default App;
