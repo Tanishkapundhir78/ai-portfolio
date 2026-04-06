@@ -1,35 +1,46 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Grid, Float, useGLTF, Environment } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useRef } from "react";
 
-// 🤖 Robot Model
-function Robot() {
+// 🤖 Robot Component
+function Robot({ scrollProgress }) {
   const { scene } = useGLTF("/robot.glb");
+  const ref = useRef();
+
+  useFrame(() => {
+    if (!ref.current) return;
+
+    // Smooth upward movement based on scroll
+    ref.current.position.y = 0 + scrollProgress * 3;
+
+    // Slight rotation for life
+    ref.current.rotation.y += 0.005;
+  });
 
   return (
     <primitive
+      ref={ref}
       object={scene}
       scale={1.5}
       position={[0, 0, 0]}
-      rotation={[0, Math.PI, 0]}
     />
   );
 }
 
-const ThreeScene = ({ robotY }) => {
+const ThreeScene = ({ scrollProgress }) => {
   return (
     <Canvas
       camera={{ position: [0, 2, 6], fov: 50 }}
       style={{ height: "100vh", width: "100%" }}
     >
       {/* Lights */}
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[2, 5, 2]} intensity={1} />
+      <ambientLight intensity={0.7} />
+      <directionalLight position={[2, 5, 2]} intensity={1.2} />
 
-      {/* Environment lighting */}
+      {/* Environment */}
       <Environment preset="city" />
 
-      {/* 🔲 3D GRID */}
+      {/* Grid */}
       <Grid
         args={[30, 30]}
         cellSize={1}
@@ -43,12 +54,10 @@ const ThreeScene = ({ robotY }) => {
         position={[0, -1, 0]}
       />
 
-      {/* 🤖 FLOATING ROBOT */}
+      {/* Robot */}
       <Suspense fallback={null}>
-        <Float speed={2} rotationIntensity={0.5} floatIntensity={1.5}>
-          <group position-y={robotY}>
-            <Robot />
-          </group>
+        <Float speed={2} rotationIntensity={0.4} floatIntensity={1}>
+          <Robot scrollProgress={scrollProgress} />
         </Float>
       </Suspense>
     </Canvas>
