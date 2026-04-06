@@ -52,7 +52,7 @@ export default function Contact() {
               </a>
 
               <a
-                href="mailto:tanishka.email@example.com"
+                href="mailto:tanishkapundhir8@gmail.com"
                 className="px-6 py-2 rounded-lg bg-gradient-to-r from-purple-400/50 to-blue-400/50"
               >
                 Contact Me
