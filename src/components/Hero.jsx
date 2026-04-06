@@ -14,7 +14,7 @@ const Hero = () => {
   // Text movement
   const textY = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
-  // Sync scroll → state
+  // Sync scroll
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (v) => {
       setScrollValue(v);
@@ -27,34 +27,26 @@ const Hero = () => {
       ref={ref}
       className="h-screen relative bg-black overflow-hidden"
     >
-
-      {/* 🌌 3D Background */}
-      <div className="absolute inset-0 z-0">
+      {/* 🌌 3D BACKGROUND */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
         <ThreeScene scrollProgress={scrollValue} />
       </div>
 
       {/* 🌟 TEXT */}
       <motion.div
         style={{ y: textY }}
-        className="absolute top-[25%] w-full flex flex-col items-center text-center z-10 px-6"
+        className="absolute top-[25%] w-full flex flex-col items-center text-center z-20 px-6"
       >
-
         <p className="text-gray-400 mb-4 text-lg">
           👋 Hello, I'm
         </p>
 
-        {/* NAME + ROBOT SPACE */}
-        <div className="flex items-center gap-6">
-          
-          <h1
-            className="text-6xl md:text-8xl lg:text-[110px] font-bold text-white"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            Tanishka
-          </h1>
-
-          {/* (Robot is rendered in 3D behind, aligned visually) */}
-        </div>
+        <h1
+          className="text-6xl md:text-8xl lg:text-[110px] font-bold text-white leading-tight"
+          style={{ fontFamily: "'Playfair Display', serif" }}
+        >
+          Tanishka
+        </h1>
 
         <h2
           className="text-3xl md:text-4xl mt-6 text-gray-300"
@@ -64,7 +56,7 @@ const Hero = () => {
         </h2>
 
         <p
-          className="mt-8 text-gray-400 max-w-2xl text-lg"
+          className="mt-8 text-gray-400 max-w-2xl text-lg leading-relaxed"
           style={{ fontFamily: "Bodoni MT, Times New Roman, serif" }}
         >
           Turning messy data into clear decisions — I uncover patterns, build intelligent dashboards,
@@ -80,9 +72,7 @@ const Hero = () => {
             Contact Me
           </button>
         </div>
-
       </motion.div>
-
     </section>
   );
 };

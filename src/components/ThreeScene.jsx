@@ -1,8 +1,27 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, useGLTF, Environment } from "@react-three/drei";
+import { useGLTF, Environment } from "@react-three/drei";
 import { Suspense, useRef } from "react";
 
-// 🤖 Robot (scroll-based only)
+// 🔲 GRID
+function FloorGrid({ scrollProgress }) {
+  const ref = useRef();
+
+  useFrame(() => {
+    if (!ref.current) return;
+
+    ref.current.rotation.x = -Math.PI / 2.8 + scrollProgress * 0.25;
+  });
+
+  return (
+    <gridHelper
+      ref={ref}
+      args={[60, 60, "#888", "#333"]}
+      position={[0, -2, 0]}
+    />
+  );
+}
+
+// 🤖 ROBOT
 function Robot({ scrollProgress }) {
   const { scene } = useGLTF("/robot.glb");
   const ref = useRef();
@@ -10,11 +29,13 @@ function Robot({ scrollProgress }) {
   useFrame(() => {
     if (!ref.current) return;
 
-    // Move slightly upward
-    ref.current.position.y = scrollProgress * 1.5;
+    ref.current.position.y = 3;
 
-    // 🔄 Flip ONLY once (0 → 180°)
-    ref.current.rotation.y = Math.PI * scrollProgress;
+    if (scrollProgress < 0.2) {
+      ref.current.rotation.y = Math.PI * (scrollProgress * 5);
+    } else {
+      ref.current.rotation.y = Math.PI;
+    }
   });
 
   return (
@@ -22,51 +43,25 @@ function Robot({ scrollProgress }) {
       ref={ref}
       object={scene}
       scale={1.2}
-      position={[2.5, 1.2, 0]} // 👉 beside name
-    />
-  );
-}
-
-// 🔲 CLEAN GRID FLOOR
-function FloorGrid({ scrollProgress }) {
-  const ref = useRef();
-
-  useFrame(() => {
-    if (!ref.current) return;
-
-    // Subtle scroll-based tilt (instead of mouse)
-    ref.current.rotation.x = -Math.PI / 2.5 + scrollProgress * 0.2;
-  });
-
-  return (
-    <gridHelper
-      ref={ref}
-      args={[50, 50, "#888", "#333"]}
-      position={[0, -2, 0]}
+      position={[0, 3, -1]}
     />
   );
 }
 
 const ThreeScene = ({ scrollProgress }) => {
   return (
-    <Canvas camera={{ position: [0, 2, 8], fov: 55 }}>
-      {/* Depth fog */}
+    <Canvas camera={{ position: [0, 4, 10], fov: 45 }}>
       <fog attach="fog" args={["#000000", 5, 25]} />
 
-      {/* Lights */}
       <ambientLight intensity={0.6} />
       <directionalLight position={[5, 8, 5]} intensity={1.2} />
 
       <Environment preset="city" />
 
-      {/* Grid */}
       <FloorGrid scrollProgress={scrollProgress} />
 
-      {/* Robot */}
       <Suspense fallback={null}>
-        <Float speed={1.5} rotationIntensity={0} floatIntensity={0.5}>
-          <Robot scrollProgress={scrollProgress} />
-        </Float>
+        <Robot scrollProgress={scrollProgress} />
       </Suspense>
     </Canvas>
   );
