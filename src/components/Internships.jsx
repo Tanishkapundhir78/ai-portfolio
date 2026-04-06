@@ -2,7 +2,7 @@ export default function Internships() {
   const internships = [
     {
       title: "Data Analytics Internship",
-      org: "LnB (Linux & Networking Basics)",
+      org: "LnB (Learn n Build)",
       duration: "15 June 2025 – 12 July 2025",
       points: [
         "Completed a 45-day structured training focused on core data analytics concepts.",
