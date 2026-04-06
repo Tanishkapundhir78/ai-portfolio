@@ -1,10 +1,8 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Environment } from "@react-three/drei";
-import { Suspense, useRef } from "react";
+import { useMemo, useRef } from "react";
 
 // 🔲 GRID
-import { useMemo, useRef } from "react";
-import { useFrame } from "@react-three/fiber";
 
 function FloorGrid({ scrollProgress }) {
   const ref = useRef();
