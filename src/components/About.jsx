@@ -13,7 +13,6 @@ const About = () => {
   const [startTyping, setStartTyping] = useState(false);
   const [doneTyping, setDoneTyping] = useState(false);
 
-  // ✍️ Typing effect
   useEffect(() => {
     if (!startTyping) return;
 
@@ -39,9 +38,7 @@ const About = () => {
       }
     }, 20);
 
-    return () => {
-      clearInterval(typeFirst);
-    };
+    return () => clearInterval(typeFirst);
   }, [startTyping]);
 
   return (
@@ -49,10 +46,10 @@ const About = () => {
       id="about"
       className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden"
     >
-      {/* 🌌 BACKGROUND */}
+      {/* BG */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0c0c0c] to-black z-0" />
 
-      {/* ✨ GLOW */}
+      {/* Glow */}
       <div className="absolute w-[400px] h-[400px] bg-white/5 blur-[120px] rounded-full top-1/3 left-1/2 -translate-x-1/2 z-0"></div>
 
       <motion.div
@@ -63,48 +60,37 @@ const About = () => {
         viewport={{ once: true }}
         className="max-w-5xl text-center z-10"
       >
-        {/* 🔥 HEADING (SHRINK AFTER TYPING) */}
+        {/* 🔥 SMALLER HEADING */}
         <motion.h2
-          animate={{ scale: doneTyping ? 0.9 : 1 }}
+          animate={{ scale: doneTyping ? 0.92 : 1 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-white"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
           About Me
         </motion.h2>
 
-        {/* ✍️ TYPING TEXT 1 */}
-        <p
-          className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto min-h-[120px]"
-          style={{ fontFamily: "Bodoni MT, serif" }}
-        >
+        {/* Typing text */}
+        <p className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto min-h-[120px]">
           {text1}
           <span className="animate-pulse">|</span>
         </p>
 
-        {/* ✍️ TYPING TEXT 2 */}
-        <p
-          className="text-gray-500 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mt-6 min-h-[120px]"
-          style={{ fontFamily: "Bodoni MT, serif" }}
-        >
+        <p className="text-gray-500 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mt-6 min-h-[120px]">
           {text2}
           {text1.length === fullText1.length && (
             <span className="animate-pulse">|</span>
           )}
         </p>
 
-        {/* 💡 CARD (APPEARS AFTER TYPING) */}
         {doneTyping && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 40 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mt-12 p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md"
+            className="mt-10 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md"
           >
-            <p
-              className="text-gray-300 text-lg"
-              style={{ fontFamily: "Bodoni MT, serif" }}
-            >
+            <p className="text-gray-300 text-lg">
               💡 I believe data is not just numbers — it’s a powerful tool to solve problems,
               tell stories, and make smarter decisions.
             </p>
