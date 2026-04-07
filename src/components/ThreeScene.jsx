@@ -2,26 +2,25 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Environment, Float } from "@react-three/drei";
 import { Suspense, useRef } from "react";
 
-// 🔲 GRID
+// 🔲 GRID FLOOR
 function FloorGrid({ scrollProgress }) {
   const ref = useRef();
 
   useFrame(() => {
     if (!ref.current) return;
-
-    ref.current.rotation.x = -Math.PI / 2.8 + scrollProgress * 0.2;
+    ref.current.rotation.x = -Math.PI / 2.6 + scrollProgress * 0.15;
   });
 
   return (
     <gridHelper
       ref={ref}
-      args={[60, 60, "#555", "#333"]}
-      position={[0, -3, 0]}
+      args={[40, 40, "#666", "#222"]}
+      position={[0, -2, 0]}
     />
   );
 }
 
-// 🤖 ROBOT (TOP CENTER + FLOAT + INTRO ANIMATION)
+// 🤖 ROBOT (VISIBLE + CENTER TOP)
 function Robot({ scrollProgress }) {
   const { scene } = useGLTF("/robot.glb");
   const ref = useRef();
@@ -29,10 +28,10 @@ function Robot({ scrollProgress }) {
   useFrame(() => {
     if (!ref.current) return;
 
-    // Stay at top center
-    ref.current.position.set(0, 4, -1);
+    // ✅ Always visible (center-top)
+    ref.current.position.set(0, 2.8, 0);
 
-    // 🔥 Intro flip animation (fast)
+    // 🔥 Fast flip at start
     if (scrollProgress < 0.15) {
       ref.current.rotation.y = Math.PI * (scrollProgress * 6);
     } else {
@@ -42,23 +41,37 @@ function Robot({ scrollProgress }) {
 
   return (
     <Float speed={2} rotationIntensity={0.2} floatIntensity={0.8}>
-      <primitive ref={ref} object={scene} scale={1.6} />
+      <primitive ref={ref} object={scene} scale={1.4} />
     </Float>
   );
 }
 
 const ThreeScene = ({ scrollProgress }) => {
   return (
-    <Canvas camera={{ position: [0, 5, 11], fov: 45 }}>
-      <fog attach="fog" args={["#000000", 6, 30]} />
+    <Canvas camera={{ position: [0, 3, 8], fov: 50 }}>
+      {/* 🌫️ Fog */}
+      <fog attach="fog" args={["#000000", 6, 20]} />
 
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[5, 10, 5]} intensity={1.3} />
+      {/* 💡 Lighting */}
+      <ambientLight intensity={0.5} />
+
+      {/* Spotlight (MAIN EFFECT) */}
+      <spotLight
+        position={[0, 8, 5]}
+        angle={0.4}
+        intensity={2}
+        penumbra={1}
+      />
+
+      {/* Soft fill light */}
+      <directionalLight position={[5, 5, 5]} intensity={1} />
 
       <Environment preset="city" />
 
+      {/* Grid */}
       <FloorGrid scrollProgress={scrollProgress} />
 
+      {/* Robot */}
       <Suspense fallback={null}>
         <Robot scrollProgress={scrollProgress} />
       </Suspense>
