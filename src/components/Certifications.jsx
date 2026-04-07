@@ -11,7 +11,7 @@ export default function Certifications() {
     },
     {
       title: "Linux Essentials",
-      issuer: "LnB (Linux & Networking Basics)",
+      issuer: "LnB (Learn n Build)",
       description:
         "Gained hands-on exposure to Linux commands, file systems, and system operations essential for development and data workflows.",
       link: "#",
@@ -64,7 +64,7 @@ export default function Certifications() {
         <motion.p
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 1 }}
+          transition={{ delay: 0.4, duration: 3 }}
           viewport={{ once: true }}
           className="text-center text-gray-400 mb-16 max-w-2xl mx-auto"
         >
