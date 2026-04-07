@@ -30,7 +30,7 @@ export default function Internships() {
   return (
     <section className="relative text-white py-24 px-6 overflow-hidden">
 
-      {/* 🌌 MATCHED BACKGROUND */}
+      {/* 🌌 BACKGROUND */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black z-0" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
@@ -43,7 +43,7 @@ export default function Internships() {
           viewport={{ once: true }}
           className="text-4xl font-bold text-center mb-6"
         >
-           Internships
+          💼 Internships
         </motion.h2>
 
         <motion.p
@@ -53,7 +53,7 @@ export default function Internships() {
           viewport={{ once: true }}
           className="text-center text-gray-400 mb-16"
         >
-          Explore my experience and work.
+          Hover to explore my experience and work.
         </motion.p>
 
         <div className="flex flex-col gap-10">
@@ -68,12 +68,12 @@ export default function Internships() {
                 delay: index * 0.15,
               }}
               viewport={{ once: true }}
-              className="group cursor-pointer rounded-2xl p-[1px] bg-white/10"
+              className="group relative cursor-pointer rounded-2xl p-[1px] bg-white/10"
             >
-              {/* ✨ SUBTLE WHITE GLOW */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 bg-white/10 blur-md"></div>
+              {/* ✨ GLOW (FIXED - NO HOVER BLOCK) */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 bg-white/10 blur-md pointer-events-none"></div>
 
-              <div className="relative bg-[#0f0f0f]/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 transition-all duration-500 group-hover:scale-[1.02]">
+              <div className="relative bg-[#0f0f0f]/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]">
 
                 {/* HEADER */}
                 <div className="flex justify-between items-center flex-wrap gap-2">
@@ -91,9 +91,9 @@ export default function Internships() {
                   </span>
                 </div>
 
-                {/* 🔥 SMOOTH HOVER CONTENT */}
+                {/* 🔥 HOVER CONTENT (FIXED HEIGHT ISSUE) */}
                 <div
-                  className="mt-4 overflow-hidden transition-all duration-500 ease-in-out
+                  className="mt-4 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
                   max-h-0 opacity-0
                   group-hover:max-h-[500px] group-hover:opacity-100"
                 >
