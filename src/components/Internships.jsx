@@ -53,7 +53,7 @@ export default function Internships() {
           viewport={{ once: true }}
           className="text-center text-gray-400 mb-16"
         >
-          Hover to explore my experience and work.
+          Explore my experience and work.
         </motion.p>
 
         <div className="flex flex-col gap-10">
@@ -95,7 +95,7 @@ export default function Internships() {
                 <div
                   className="mt-4 overflow-hidden transition-all duration-500 ease-in-out
                   max-h-0 opacity-0
-                  group-hover:max-h-[300px] group-hover:opacity-100"
+                  group-hover:max-h-[500px] group-hover:opacity-100"
                 >
                   <ul className="list-disc pl-5 space-y-2 text-gray-300 text-sm">
                     {item.points.map((point, i) => (
