@@ -1,18 +1,41 @@
+import { motion, useScroll } from "framer-motion";
+import { useEffect, useState } from "react";
+
 const Navbar = () => {
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    let lastScroll = 0;
+
+    return scrollY.on("change", (latest) => {
+      if (latest > lastScroll && latest > 50) {
+        setHidden(true); // scroll down → hide
+      } else {
+        setHidden(false); // scroll up → show
+      }
+      lastScroll = latest;
+    });
+  }, [scrollY]);
+
   return (
-    <div className="fixed top-0 w-full flex justify-between items-center px-8 py-4 bg-white/5 backdrop-blur-md border-b border-white/10 z-50">
-      
-      <h1 className="text-xl font-semibold tracking-wide">
-        Tanishka
-      </h1>
+    <motion.nav
+      initial={{ y: 0 }}
+      animate={{ y: hidden ? -100 : 0 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/40 border-b border-white/10"
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-end items-center">
 
-      <div className="space-x-8 hidden md:flex">
-        <a href="#about" className="hover:text-gray-400 transition">About</a>
-        <a href="#projects" className="hover:text-gray-400 transition scroll-smooth">Projects</a>
-        <a href="#contact" className="hover:text-gray-400 transition">Contact</a>
+        {/* Only right side links */}
+        <div className="flex gap-8 text-gray-300 text-lg">
+          <a href="#about" className="hover:text-white transition">About</a>
+          <a href="#projects" className="hover:text-white transition">Projects</a>
+          <a href="#contact" className="hover:text-white transition">Contact</a>
+        </div>
+
       </div>
-
-    </div>
+    </motion.nav>
   );
 };
 
