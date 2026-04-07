@@ -48,7 +48,7 @@ export default function TechnicalWriting() {
           className="text-4xl font-bold text-center mb-4"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
-          ✍️ Technical Writing
+           Technical Writing
         </motion.h2>
 
         <motion.p
