@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { motion } from "framer-motion";
 
 const projects = [
   {
@@ -53,53 +54,52 @@ export default function Projects() {
   const [aiResponse, setAIResponse] = useState("");
   const responseRef = useRef(null);
 
-  // 🔥 PROJECT-SPECIFIC INTELLIGENT ANSWERS
   const generateAI = (project, type) => {
     const name = project.title;
 
     if (name.includes("Sales")) {
       if (type === "recruiter")
-        return "🎯 This project shows strong business understanding — not just building dashboards, but identifying what metrics actually drive revenue and retention. It reflects the ability to think like a decision-maker, not just an analyst.";
+        return "🎯 This project shows strong business understanding — not just building dashboards, but identifying what metrics actually drive revenue and retention.";
       if (type === "technical")
-        return "⚙️ Focus was on clean data modeling and efficient DAX calculations to ensure performance at scale. The challenge was balancing accuracy with dashboard responsiveness.";
+        return "⚙️ Focus was on clean data modeling and efficient DAX calculations to ensure performance at scale.";
       if (type === "impact")
-        return "📈 Helped uncover high-value customer segments and sales trends, which directly supports better targeting and revenue optimization strategies.";
+        return "📈 Helped uncover high-value customer segments and sales trends.";
     }
 
     if (name.includes("Churn")) {
       if (type === "recruiter")
-        return "🎯 This project highlights strong problem-solving in a high-impact business scenario — customer churn. It shows the ability to move beyond theory and build something actionable.";
+        return "🎯 Strong problem-solving in a high-impact churn scenario.";
       if (type === "technical")
-        return "⚙️ Key strength lies in feature engineering and model interpretability using SHAP. Instead of just predicting churn, the model explains *why* customers leave.";
+        return "⚙️ Feature engineering + SHAP explainability.";
       if (type === "impact")
-        return "📈 Enables businesses to proactively retain customers by identifying risk signals early, which is far more valuable than reactive analysis.";
+        return "📈 Enables proactive customer retention.";
     }
 
     if (name.includes("Traffic")) {
       if (type === "recruiter")
-        return "🎯 Demonstrates ability to turn raw web data into meaningful marketing insights. Focus is on understanding user behavior, not just reporting numbers.";
+        return "🎯 Turns raw web data into meaningful insights.";
       if (type === "technical")
-        return "⚙️ Involved structuring Google Analytics data into clear funnels and segments, ensuring that dashboards are intuitive and actionable.";
+        return "⚙️ Built funnels & segments in GA.";
       if (type === "impact")
-        return "📈 Helps identify which channels actually drive conversions, allowing businesses to allocate budget more effectively.";
+        return "📈 Improves marketing ROI decisions.";
     }
 
     if (name.includes("Startup")) {
       if (type === "recruiter")
-        return "🎯 This project shows strong product thinking — combining AI with real-world startup needs. It’s not just tech, it’s usability-focused.";
+        return "🎯 Strong product thinking + AI integration.";
       if (type === "technical")
-        return "⚙️ Core challenge was prompt engineering — structuring inputs so the AI generates consistent and meaningful business outputs.";
+        return "⚙️ Prompt engineering focus.";
       if (type === "impact")
-        return "📈 Reduces the barrier for idea validation by generating structured startup plans instantly, saving time and effort.";
+        return "📈 Speeds up idea validation.";
     }
 
     if (name.includes("Cancer")) {
       if (type === "recruiter")
-        return "🎯 Reflects ability to work on sensitive, high-impact datasets. Shows analytical thinking applied to real-world healthcare problems.";
+        return "🎯 Real-world healthcare analysis.";
       if (type === "technical")
-        return "⚙️ Focused on feature relationships and model evaluation to ensure reliable predictions, not just high accuracy scores.";
+        return "⚙️ Focus on model evaluation.";
       if (type === "impact")
-        return "📈 Supports early detection insights, which is critical in healthcare where timely decisions can save lives.";
+        return "📈 Supports early detection insights.";
     }
 
     return "Insight not available.";
@@ -111,8 +111,6 @@ export default function Projects() {
 
     setTimeout(() => {
       setAIResponse(generateAI(project, type));
-
-      // 🔥 AUTO SCROLL
       setTimeout(() => {
         responseRef.current?.scrollIntoView({ behavior: "smooth" });
       }, 100);
@@ -120,69 +118,88 @@ export default function Projects() {
   };
 
   return (
-    <section className="relative text-white py-20 px-6 overflow-hidden">
+    <section className="relative text-white py-24 px-6 overflow-hidden">
 
-      {/* 🔥 HERO-LIKE RADIAL BG */}
-      <div className="absolute inset-0 bg-[#0b0f14]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_60%)]"></div>
-      </div>
+      {/* 🌌 PREMIUM BG */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black z-0" />
 
-      <div className="relative z-10">
-        <h2 className="text-4xl font-bold text-center mb-16">
-          🚀 Projects
-        </h2>
+      {/* ✨ GLOW */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-white/5 blur-[140px] rounded-full z-0"></div>
 
+      <div className="relative z-10 max-w-7xl mx-auto">
+
+        {/* 🔥 HEADING */}
+        <motion.h2
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16"
+          style={{ fontFamily: "'Playfair Display', serif" }}
+        >
+          Projects
+        </motion.h2>
+
+        {/* 🧊 GRID */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
-              className="relative group rounded-2xl p-[1px] h-full bg-gradient-to-r from-white/10 to-white/10 hover:from-purple-400/40 hover:to-blue-400/40"
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.15 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.04, y: -10 }}
+              className="group relative p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 transition"
             >
-              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between">
+              {/* ✨ Glow on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-white/10 via-transparent to-white/10 rounded-2xl"></div>
 
-                <h3 className="text-2xl font-semibold mb-3">
-                  {project.title}
-                </h3>
+              <h3 className="text-xl font-semibold mb-3 relative z-10">
+                {project.title}
+              </h3>
 
-                <ul className="text-gray-400 mb-4 space-y-2 text-sm">
-                  {project.description.map((point, i) => (
-                    <li key={i}>• {point}</li>
-                  ))}
-                </ul>
+              <ul className="text-gray-400 mb-4 space-y-2 text-sm relative z-10">
+                {project.description.map((point, i) => (
+                  <li key={i}>• {point}</li>
+                ))}
+              </ul>
 
-                <div className="flex flex-col gap-2">
-                  {["recruiter", "technical", "impact"].map((type) => (
-                    <button
-                      key={type}
-                      onClick={() => handleExplain(project, type)}
-                      className="relative rounded-lg p-[1px] bg-gradient-to-r from-white/10 to-white/10 hover:from-purple-400/40 hover:to-blue-400/40"
-                    >
-                      <span className="block bg-[#1a1a1a] px-4 py-2 rounded-lg">
-                        {type === "recruiter" && "🎯 Recruiter View"}
-                        {type === "technical" && "⚙️ Technical View"}
-                        {type === "impact" && "📈 Impact View"}
-                      </span>
-                    </button>
-                  ))}
-                </div>
+              <div className="flex flex-col gap-2 relative z-10">
+                {["recruiter", "technical", "impact"].map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => handleExplain(project, type)}
+                    className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition text-sm"
+                  >
+                    {type === "recruiter" && "🎯 Recruiter View"}
+                    {type === "technical" && "⚙️ Technical View"}
+                    {type === "impact" && "📈 Impact View"}
+                  </button>
+                ))}
               </div>
-            </div>
+            </motion.div>
           ))}
+
         </div>
 
-        {/* 🔥 AUTO SCROLL TARGET */}
+        {/* 🧠 AI RESPONSE */}
         {activeProject && (
-          <div
+          <motion.div
             ref={responseRef}
-            className="mt-16 bg-[#0f0f0f] border border-white/10 p-6 rounded-2xl"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-20 p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10"
           >
             <h3 className="text-2xl font-semibold mb-4">
               🧠 Insight: {activeProject.title}
             </h3>
 
             <p className="text-gray-300">{aiResponse}</p>
-          </div>
+          </motion.div>
         )}
+
       </div>
     </section>
   );
