@@ -18,9 +18,6 @@ export default function Skills() {
       {/* 🌌 MATCHING BACKGROUND */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black z-0" />
 
-      {/* ✨ SOFT GLOBAL GLOW */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-white/5 blur-[140px] rounded-full z-0"></div>
-
       <div className="relative z-10 max-w-5xl mx-auto">
 
         {/* HEADER */}
@@ -75,9 +72,6 @@ export default function Skills() {
                 </div>
 
                 {/* CARD */}
-                <div className="absolute inset-0 rounded-2xl pointer-events-none">
-                  <div className="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-white/10 to-transparent rounded-t-2xl"></div>
-                  </div>
                 <div className="group w-[42%]">
 
                   <div className="relative p-[1px] rounded-2xl bg-white/10 transition-all duration-500">
