@@ -31,10 +31,10 @@ export default function TechnicalWriting() {
   return (
     <section className="relative text-white py-24 px-6 overflow-hidden">
 
-      {/* 🌌 MATCHING BACKGROUND */}
+      {/* 🌌 BACKGROUND */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black z-0" />
 
-      {/* ✨ SOFT GLOW */}
+      {/* ✨ SOFT GLOBAL GLOW */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-white/5 blur-[140px] rounded-full z-0"></div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
@@ -63,27 +63,40 @@ export default function TechnicalWriting() {
         </motion.p>
 
         {/* GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 perspective-[1200px]">
 
           {blogs.map((blog, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{
+                opacity: 0,
+                y: 100,
+                rotateX: 20,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+              }}
               transition={{
-                duration: 1,
-                delay: index * 0.15,
+                duration: 1.1,
+                delay: index * 0.2,
                 ease: "easeOut",
               }}
               viewport={{ once: true }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="relative group rounded-2xl p-[1px] 
-              bg-white/10 transition-all duration-500"
+              whileHover={{
+                y: -10,
+                scale: 1.03,
+              }}
+              className="relative group rounded-2xl p-[1px] bg-white/10 transition-all duration-500"
             >
-              {/* 🔥 WARM WHITE GLOW */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 bg-white/10 blur-sm"></div>
+              {/* 🔥 BRIGHT WARM WHITE GLOW */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 bg-white/20 blur-md"></div>
 
-              {/* INNER CARD */}
+              {/* ✨ EDGE GLOW */}
+              <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-white/30 transition duration-500"></div>
+
+              {/* CARD */}
               <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between relative z-10">
 
                 <div>
@@ -114,7 +127,7 @@ export default function TechnicalWriting() {
                   className="rounded-lg px-4 py-2 text-center text-sm 
                   bg-white/5 hover:bg-white/10 border border-white/10 
                   transition-all duration-300
-                  hover:shadow-[0_0_12px_rgba(255,255,255,0.25)]"
+                  hover:shadow-[0_0_16px_rgba(255,255,255,0.35)]"
                 >
                   Read Article →
                 </a>
