@@ -42,7 +42,7 @@ export default function Skills() {
           viewport={{ once: true }}
           className="text-4xl font-bold text-center mb-6"
         >
-          🧠 Skills Roadmap
+          Skills 
         </motion.h2>
 
         <motion.p

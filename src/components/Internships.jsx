@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function Internships() {
   const internships = [
     {
@@ -28,32 +30,50 @@ export default function Internships() {
   return (
     <section className="relative text-white py-24 px-6 overflow-hidden">
 
-      {/* BACKGROUND */}
-      <div className="absolute inset-0 bg-[#0b0f14]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_60%)]"></div>
-      </div>
+      {/* 🌌 MATCHED BACKGROUND */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black z-0" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
 
-        <h2 className="text-4xl font-bold text-center mb-6">
-          💼 Internships
-        </h2>
+        {/* HEADER */}
+        <motion.h2
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="text-4xl font-bold text-center mb-6"
+        >
+           Internships
+        </motion.h2>
 
-        <p className="text-center text-gray-400 mb-16">
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          viewport={{ once: true }}
+          className="text-center text-gray-400 mb-16"
+        >
           Hover to explore my experience and work.
-        </p>
+        </motion.p>
 
         <div className="flex flex-col gap-10">
 
           {internships.map((item, index) => (
-            <div
+            <motion.div
               key={index}
-              className="group cursor-pointer rounded-2xl p-[1px] 
-              bg-gradient-to-r from-white/10 to-white/10
-              hover:from-purple-400/60 hover:to-blue-400/60
-              transition-all duration-300"
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.8,
+                delay: index * 0.15,
+              }}
+              viewport={{ once: true }}
+              className="group cursor-pointer rounded-2xl p-[1px] bg-white/10"
             >
-              <div className="bg-[#0f0f0f]/80 backdrop-blur-md border border-white/10 rounded-2xl p-6 transition-all duration-300 group-hover:scale-[1.02]">
+              {/* ✨ SUBTLE WHITE GLOW */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 bg-white/10 blur-md"></div>
+
+              <div className="relative bg-[#0f0f0f]/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 transition-all duration-500 group-hover:scale-[1.02]">
 
                 {/* HEADER */}
                 <div className="flex justify-between items-center flex-wrap gap-2">
@@ -71,8 +91,9 @@ export default function Internships() {
                   </span>
                 </div>
 
-                {/* 🔥 HOVER CONTENT (FIXED) */}
-                <div className="mt-4 overflow-hidden transition-all duration-500 ease-in-out
+                {/* 🔥 SMOOTH HOVER CONTENT */}
+                <div
+                  className="mt-4 overflow-hidden transition-all duration-500 ease-in-out
                   max-h-0 opacity-0
                   group-hover:max-h-[300px] group-hover:opacity-100"
                 >
@@ -84,7 +105,7 @@ export default function Internships() {
                 </div>
 
               </div>
-            </div>
+            </motion.div>
           ))}
 
         </div>
