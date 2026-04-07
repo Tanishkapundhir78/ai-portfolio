@@ -76,22 +76,25 @@ export default function Certifications() {
 
           {certs.map((cert, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{
-                rotateY: [0, 15, -10, 0],
-                scale: 1.04,
-              }}
-              transition={{
-                duration: 0.4,          // ⚡ fast flip
-                delay: index * 0.15,    // stagger entry
-                ease: "easeInOut",
-              }}
-              viewport={{ once: true }}
-              className="relative group rounded-2xl p-[1px] bg-white/10"
-              style={{ transformStyle: "preserve-3d" }}
-            >
+  key={index}
+  initial={{ opacity: 0, y: 80 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+
+  whileHover={{
+    rotateY: 20,
+    scale: 1.04,
+  }}
+
+  transition={{
+    duration: 0.35,
+    delay: index * 0.15,
+    ease: "easeOut",
+  }}
+
+  className="relative group rounded-2xl p-[1px] bg-white/10"
+  style={{ transformStyle: "preserve-3d" }}
+>
               {/* ✨ WHITE GLOW */}
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300 bg-white/10 blur-md"></div>
 
