@@ -54,7 +54,6 @@ export default function Projects() {
   const [aiResponse, setAIResponse] = useState("");
   const responseRef = useRef(null);
 
-  // ✅ ORIGINAL TEXT KEPT SAME
   const generateAI = (project, type) => {
     const name = project.title;
 
@@ -124,7 +123,7 @@ export default function Projects() {
       {/* 🌌 BACKGROUND */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black z-0" />
 
-      {/* ✨ GLOW */}
+      {/* ✨ SOFT WHITE GLOW */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-white/5 blur-[140px] rounded-full z-0"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -138,7 +137,7 @@ export default function Projects() {
           className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
-          🚀 Projects
+           Projects
         </motion.h2>
 
         {/* 🧊 GRID */}
@@ -155,16 +154,13 @@ export default function Projects() {
                 ease: "easeOut",
               }}
               viewport={{ once: true }}
-              whileHover={{
-                scale: 1.05,
-                y: -12,
-              }}
+              whileHover={{ scale: 1.04, y: -10 }}
               className="group relative p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 overflow-hidden"
             >
-              {/* ✨ GLOW EFFECT */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-purple-400/10 via-transparent to-blue-400/10"></div>
+              {/* ✨ WHITE GLOW */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-white/5 rounded-2xl"></div>
 
-              {/* 🔥 LIGHT EDGE */}
+              {/* 🔥 EDGE LIGHT */}
               <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-white/20 transition duration-500"></div>
 
               <h3 className="text-xl font-semibold mb-3 relative z-10">
@@ -177,13 +173,13 @@ export default function Projects() {
                 ))}
               </ul>
 
-              {/* 🎨 BUTTONS */}
+              {/* ⚪ BUTTONS (MONOCHROME) */}
               <div className="flex flex-col gap-2 relative z-10">
                 {["recruiter", "technical", "impact"].map((type) => (
                   <button
                     key={type}
                     onClick={() => handleExplain(project, type)}
-                    className="px-4 py-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-blue-500/20 border border-white/10 transition-all duration-300 text-sm hover:shadow-[0_0_15px_rgba(139,92,246,0.3)]"
+                    className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-300 text-sm hover:shadow-[0_0_12px_rgba(255,255,255,0.25)]"
                   >
                     {type === "recruiter" && "🎯 Recruiter View"}
                     {type === "technical" && "⚙️ Technical View"}
