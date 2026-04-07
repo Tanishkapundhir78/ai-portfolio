@@ -12,11 +12,15 @@ function FloorGrid({ scrollProgress }) {
   });
 
   return (
-    <gridHelper
+    <primitive object={ref.current}>
+      <gridHelper
       ref={ref}
-      args={[40, 40, "#555", "#222"]}
+      args={[40, 40, "#2a2a2a", "#111111"]}
       position={[0, -2, 0]}
-    />
+      >
+        <lineBasicMaterial transparent opacity={0.3} />
+      </gridHelper>
+      </primitive>
   );
 }
 
