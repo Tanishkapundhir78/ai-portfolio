@@ -75,6 +75,9 @@ export default function Skills() {
                 </div>
 
                 {/* CARD */}
+                <div className="absolute inset-0 rounded-2xl pointer-events-none">
+                  <div className="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-white/10 to-transparent rounded-t-2xl"></div>
+                  </div>
                 <div className="group w-[42%]">
 
                   <div className="relative p-[1px] rounded-2xl bg-white/10 transition-all duration-500">
@@ -83,7 +86,15 @@ export default function Skills() {
                     <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 bg-white/10 blur-md"></div>
 
                     {/* GLASS CARD */}
-                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 relative z-10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+                    <div 
+                    className="rounded-2xl p-5 relative z-10 border border-white/20"
+                    style={{
+                      background: "rgba(255,255,255,0.02)", // 🔥 almost invisible
+                      backdropFilter: "blur(2px)",          // very light blur (glass feel)
+                      WebkitBackdropFilter: "blur(2px)",
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+                      }}
+                      >
 
                       {/* MAIN SKILL */}
                       <h3 className="text-lg font-semibold mb-2">
