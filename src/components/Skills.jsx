@@ -80,7 +80,7 @@ export default function Skills() {
                     <div
                     className="rounded-2xl p-5 relative z-10 border border-white/15"
                     style={{
-                      background: "rgba(255,255,255,0.005)", // 🔥 EXTREMELY transparency
+                      background: "rgba(255,255,255,0.008)", // 🔥 EXTREMELY transparency
                       backdropFilter: "blur(1px)",           // almost clear
                       WebkitBackdropFilter: "blur(1px)",
                       boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
