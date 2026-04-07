@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function TechnicalWriting() {
   const blogs = [
     {
@@ -27,37 +29,62 @@ export default function TechnicalWriting() {
   ];
 
   return (
-    <section className="relative text-white py-20 px-6 overflow-hidden">
+    <section className="relative text-white py-24 px-6 overflow-hidden">
 
-      {/* 🔥 BACKGROUND */}
-      <div className="absolute inset-0 bg-[#0b0f14]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_60%)]"></div>
-      </div>
+      {/* 🌌 MATCHING BACKGROUND */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black z-0" />
+
+      {/* ✨ SOFT GLOW */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-white/5 blur-[140px] rounded-full z-0"></div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
 
         {/* HEADER */}
-        <h2 className="text-4xl font-bold text-center mb-4">
+        <motion.h2
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="text-4xl font-bold text-center mb-4"
+          style={{ fontFamily: "'Playfair Display', serif" }}
+        >
           ✍️ Technical Writing
-        </h2>
+        </motion.h2>
 
-        <p className="text-center text-gray-400 mb-16 max-w-2xl mx-auto">
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 1 }}
+          viewport={{ once: true }}
+          className="text-center text-gray-400 mb-16 max-w-2xl mx-auto"
+        >
           Writing about machine learning, analytics, and real-world data problems — 
           focusing on what actually works beyond theory.
-        </p>
+        </motion.p>
 
         {/* GRID */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
           {blogs.map((blog, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1,
+                delay: index * 0.15,
+                ease: "easeOut",
+              }}
+              viewport={{ once: true }}
+              whileHover={{ y: -8, scale: 1.02 }}
               className="relative group rounded-2xl p-[1px] 
-              bg-gradient-to-r from-white/10 to-white/10
-              transition-all duration-300
-              hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20
-              hover:from-purple-400/50 hover:to-blue-400/50"
+              bg-white/10 transition-all duration-500"
             >
-              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between">
+              {/* 🔥 WARM WHITE GLOW */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 bg-white/10 blur-sm"></div>
+
+              {/* INNER CARD */}
+              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between relative z-10">
 
                 <div>
                   {/* TAG + TIME */}
@@ -69,7 +96,7 @@ export default function TechnicalWriting() {
                   </div>
 
                   {/* TITLE */}
-                  <h3 className="text-lg font-semibold mb-3 group-hover:text-white">
+                  <h3 className="text-lg font-semibold mb-3 group-hover:text-white transition">
                     {blog.title}
                   </h3>
 
@@ -84,18 +111,17 @@ export default function TechnicalWriting() {
                   href={blog.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative rounded-lg p-[1px] 
-                  bg-gradient-to-r from-white/10 to-white/10
+                  className="rounded-lg px-4 py-2 text-center text-sm 
+                  bg-white/5 hover:bg-white/10 border border-white/10 
                   transition-all duration-300
-                  hover:from-purple-400/50 hover:to-blue-400/50"
+                  hover:shadow-[0_0_12px_rgba(255,255,255,0.25)]"
                 >
-                  <span className="block bg-[#1a1a1a] px-4 py-2 rounded-lg text-center text-sm">
-                    Read Article →
-                  </span>
+                  Read Article →
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
+
         </div>
 
       </div>
