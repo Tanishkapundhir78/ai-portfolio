@@ -76,9 +76,6 @@ export default function Skills() {
 
                   <div className="relative p-[1px] rounded-2xl bg-white/10 transition-all duration-500">
 
-                    {/* ✨ WHITE GLOW */}
-                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 bg-white/10 blur-md"></div>
-
                     {/* GLASS CARD */}
                     <div 
                     className="rounded-2xl p-5 relative z-10 border border-white/20"
