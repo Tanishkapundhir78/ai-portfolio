@@ -8,19 +8,21 @@ function FloorGrid({ scrollProgress }) {
 
   useFrame(() => {
     if (!ref.current) return;
+
+    // tilt for 3D feel
     ref.current.rotation.x = -Math.PI / 2.6 + scrollProgress * 0.15;
+
+    // ✅ make grid subtle
+    ref.current.material.opacity = 0.25;
+    ref.current.material.transparent = true;
   });
 
   return (
-    <primitive object={ref.current}>
-      <gridHelper
+    <gridHelper
       ref={ref}
-      args={[40, 40, "#2a2a2a", "#111111"]}
+      args={[40, 40, "#2a2a2a", "#111111"]} // soft colors
       position={[0, -2, 0]}
-      >
-        <lineBasicMaterial transparent opacity={0.3} />
-      </gridHelper>
-      </primitive>
+    />
   );
 }
 
