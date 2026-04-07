@@ -77,16 +77,15 @@ export default function Skills() {
                   <div className="relative p-[1px] rounded-2xl bg-white/10 transition-all duration-500">
 
                     {/* GLASS CARD */}
-                    <div 
-                    className="rounded-2xl p-5 relative z-10 border border-white/20"
+                    <div
+                    className="rounded-2xl p-5 relative z-10 border border-white/15"
                     style={{
-                      background: "rgba(255,255,255,0.02)", // 🔥 almost invisible
-                      backdropFilter: "blur(2px)",          // very light blur (glass feel)
-                      WebkitBackdropFilter: "blur(2px)",
-                      boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
-                      }}
-                      >
-
+                      background: "rgba(255,255,255,0.005)", // 🔥 EXTREMELY transparency
+                      backdropFilter: "blur(1px)",           // almost clear
+                      WebkitBackdropFilter: "blur(1px)",
+                      boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
+                   }}
+                   >
                       {/* MAIN SKILL */}
                       <h3 className="text-lg font-semibold mb-2">
                         {skill.title}
