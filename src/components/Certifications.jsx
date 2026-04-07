@@ -11,7 +11,7 @@ export default function Certifications() {
     },
     {
       title: "Linux Essentials",
-      issuer: "LnB (Learn n Build)",
+      issuer: "LnB (Linux & Networking Basics)",
       description:
         "Gained hands-on exposure to Linux commands, file systems, and system operations essential for development and data workflows.",
       link: "#",
@@ -45,7 +45,7 @@ export default function Certifications() {
       {/* 🌌 BACKGROUND */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black z-0" />
 
-      {/* ✨ SOFT WHITE GLOW */}
+      {/* ✨ GLOW */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-white/5 blur-[140px] rounded-full z-0"></div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
@@ -54,10 +54,9 @@ export default function Certifications() {
         <motion.h2
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+          transition={{ duration: 1.2 }}
           viewport={{ once: true }}
           className="text-4xl font-bold text-center mb-4"
-          style={{ fontFamily: "'Playfair Display', serif" }}
         >
            Certifications
         </motion.h2>
@@ -80,19 +79,16 @@ export default function Certifications() {
               key={index}
               initial={{ opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{
+                rotateY: [0, 15, -10, 0],
+                scale: 1.04,
+              }}
               transition={{
-                duration: 1,
-                delay: index * 0.15,
-                ease: "easeOut",
-                type: "spring",
-                stiffness: 200,
-                damping: 12,
+                duration: 0.4,          // ⚡ fast flip
+                delay: index * 0.15,    // stagger entry
+                ease: "easeInOut",
               }}
               viewport={{ once: true }}
-              whileHover={{
-                rotateY: 8,
-                scale: 1.03,
-              }}
               className="relative group rounded-2xl p-[1px] bg-white/10"
               style={{ transformStyle: "preserve-3d" }}
             >
