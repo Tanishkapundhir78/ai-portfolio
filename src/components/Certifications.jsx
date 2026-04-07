@@ -42,7 +42,7 @@ export default function Certifications() {
   return (
     <section className="relative text-white py-24 px-6 overflow-hidden">
 
-      {/* 🌌 MATCHING BACKGROUND */}
+      {/* 🌌 BACKGROUND */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black z-0" />
 
       {/* ✨ SOFT WHITE GLOW */}
@@ -73,7 +73,7 @@ export default function Certifications() {
         </motion.p>
 
         {/* GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 perspective-[1200px]">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
 
           {certs.map((cert, index) => (
             <motion.div
@@ -84,20 +84,24 @@ export default function Certifications() {
                 duration: 1,
                 delay: index * 0.15,
                 ease: "easeOut",
+                type: "spring",
+                stiffness: 200,
+                damping: 12,
               }}
               viewport={{ once: true }}
-              whileHover={{ rotateY: 180 }}
-              className="relative group rounded-2xl h-[260px]"
+              whileHover={{
+                rotateY: 8,
+                scale: 1.03,
+              }}
+              className="relative group rounded-2xl p-[1px] bg-white/10"
               style={{ transformStyle: "preserve-3d" }}
             >
-              {/* 🔥 WHITE GLOW */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 bg-white/10 blur-md"></div>
+              {/* ✨ WHITE GLOW */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300 bg-white/10 blur-md"></div>
 
-              {/* FRONT */}
-              <div
-                className="absolute inset-0 bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 flex flex-col justify-between"
-                style={{ backfaceVisibility: "hidden" }}
-              >
+              {/* CARD */}
+              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between relative z-10">
+
                 <div>
                   <h3 className="text-lg font-semibold mb-2">
                     {cert.title}
@@ -107,7 +111,7 @@ export default function Certifications() {
                     {cert.issuer}
                   </p>
 
-                  <p className="text-gray-400 text-sm">
+                  <p className="text-gray-400 text-sm mb-6">
                     {cert.description}
                   </p>
                 </div>
@@ -123,17 +127,6 @@ export default function Certifications() {
                 >
                   🎓 View Certificate
                 </a>
-              </div>
-
-              {/* BACK (SIMPLE) */}
-              <div
-                className="absolute inset-0 bg-[#111] border border-white/10 rounded-2xl flex items-center justify-center text-gray-300 text-sm"
-                style={{
-                  transform: "rotateY(180deg)",
-                  backfaceVisibility: "hidden",
-                }}
-              >
-                Verified Credential ✅
               </div>
             </motion.div>
           ))}
