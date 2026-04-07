@@ -72,28 +72,28 @@ export default function Certifications() {
         </motion.p>
 
         {/* GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 perspective-[1200px]">
 
           {certs.map((cert, index) => (
             <motion.div
-  key={index}
-  initial={{ opacity: 0, y: 80 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
+            key={index}
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
 
-  whileHover={{
-    rotateY: 20,
-    scale: 1.04,
-  }}
-
-  transition={{
-    duration: 0.35,
-    delay: index * 0.15,
-    ease: "easeOut",
-  }}
-
-  className="relative group rounded-2xl p-[1px] bg-white/10"
-  style={{ transformStyle: "preserve-3d" }}
+            whileHover={{
+              rotateY: 20,
+              scale: 1.04,
+            }}
+            
+            transition={{
+              duration: 0.35,
+              delay: index * 0.15,
+              ease: "easeOut",
+            }}
+            
+            className="relative group rounded-2xl p-[1px] bg-white/10"
+            style={{ transformStyle: "preserve-3d" }}
 >
               {/* ✨ WHITE GLOW */}
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300 bg-white/10 blur-md"></div>
