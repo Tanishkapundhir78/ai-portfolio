@@ -73,17 +73,19 @@ export default function Skills() {
 
                 {/* CARD */}
                 <div className="absolute inset-0 rounded-2xl pointer-events-none">
-                  <div className="top-0 left-0 w-full h-[25%] bg-gradient-to-b from-white/6 to-transparent rounded-t-2xl">
-                  
+                  <div className="absolute top-0 left-0 w-full h-[35%] bg-gradient-to-b from-white/8 to-transparent rounded-t-2xl">
+
 
                     {/* GLASS CARD */}
                     <div
-                    className="rounded-2xl p-5 relative z-10 border border-white/10"
-                    style={{
-                      background: "transparent",
-                      boxShadow: "0 4px 15px rgba(0,0,0,0.15)",
-                   }}
-                   >
+  className="rounded-2xl p-5 relative z-10 border border-white/15"
+  style={{
+    background: "rgba(255,255,255,0.005)", // 🔥 EXTREMELY transparent
+    backdropFilter: "blur(1px)",           // almost clear
+    WebkitBackdropFilter: "blur(1px)",
+    boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
+  }}
+>
                       {/* MAIN SKILL */}
                       <h3 className="text-lg font-semibold mb-2">
                         {skill.title}
