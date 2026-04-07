@@ -76,8 +76,9 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 80 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.8,
+                  duration: 1,
                   delay: index * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
                 }}
                 viewport={{ once: true }}
                 className="relative flex items-center mb-20"

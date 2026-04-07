@@ -79,9 +79,9 @@ export default function TechnicalWriting() {
                 rotateX: 0,
               }}
               transition={{
-                duration: 1.1,
+                duration: 1,
                 delay: index * 0.2,
-                ease: "easeOut",
+                ease: [0.22, 1, 0.36, 1],
               }}
               viewport={{ once: true }}
               whileHover={{

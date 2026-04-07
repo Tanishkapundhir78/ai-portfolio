@@ -17,7 +17,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-4xl font-bold mb-6"
         >
-          🚀 Let’s Work Together
+           Let’s Build Together
         </motion.h2>
 
         <motion.p

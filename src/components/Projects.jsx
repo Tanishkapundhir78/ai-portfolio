@@ -151,7 +151,7 @@ export default function Projects() {
               transition={{
                 duration: 1,
                 delay: index * 0.15,
-                ease: "easeOut",
+                ease: [0.22, 1, 0.36, 1],
               }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.04, y: -10 }}

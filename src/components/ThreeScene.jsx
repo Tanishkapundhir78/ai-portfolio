@@ -1,77 +1,62 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF, Environment, Float } from "@react-three/drei";
-import { Suspense, useRef } from "react";
+import { useGLTF } from "@react-three/drei";
+import { useRef } from "react";
 
-// 🔲 GRID FLOOR
-function FloorGrid({ scrollProgress }) {
-  const ref = useRef();
+function Robot() {
+  const robotRef = useRef();
 
-  useFrame(() => {
-    if (!ref.current) return;
-
-    // tilt for 3D feel
-    ref.current.rotation.x = -Math.PI / 2.6 + scrollProgress * 0.15;
-
-    // ✅ make grid subtle
-    ref.current.material.opacity = 0.25;
-    ref.current.material.transparent = true;
-  });
-
-  return (
-    <gridHelper
-      ref={ref}
-      args={[40, 40, "#484444", "#696060"]} // soft colors
-      position={[0, -2, 0]}
-    />
-  );
-}
-
-// 🤖 ROBOT (FIXED POSITION + SMOOTH FLIP)
-function Robot({ scrollProgress }) {
+  // 📦 Load GLB (make sure path is correct)
   const { scene } = useGLTF("/robot.glb");
-  const ref = useRef();
 
-  useFrame(() => {
-    if (!ref.current) return;
+  // 🎬 Animation loop
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
 
-    // ✅ PERFECT POSITION (visible above text)
-    ref.current.position.set(0, 2.2, 0);
+    if (robotRef.current) {
+      // ✨ FLOATING (smooth + premium)
+      robotRef.current.position.y = -0.8 + Math.sin(t * 1.2) * 0.15;
 
-    // 🔥 Smooth flip animation
-    if (scrollProgress < 0.2) {
-      ref.current.rotation.y = Math.PI * (scrollProgress * 3);
-    } else {
-      ref.current.rotation.y = Math.PI;
+      // ✨ SUBTLE ROTATION (alive feel)
+      robotRef.current.rotation.y = Math.sin(t * 0.5) * 0.2;
     }
   });
 
   return (
-    <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.6}>
-      <primitive ref={ref} object={scene} scale={1.3} />
-    </Float>
+    <primitive
+      ref={robotRef}
+      object={scene}
+      scale={0.9}
+      position={[0, -0.8, 0]} // 🔥 lowered position
+    />
   );
 }
 
-const ThreeScene = ({ scrollProgress }) => {
+export default function ThreeScene() {
   return (
-    <Canvas camera={{ position: [0, 3, 9], fov: 50 }}>
-      {/* Fog */}
-      <fog attach="fog" args={["#000000", 6, 20]} />
+    <Canvas
+      camera={{ position: [0, 0, 3], fov: 45 }}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        zIndex: 0,
+      }}
+    >
+      {/* 🌌 LIGHTING (balanced + visible robot) */}
+      <ambientLight intensity={1.2} />
 
-      {/* Lights */}
-      <ambientLight intensity={0.5} />
-      <spotLight position={[0, 8, 5]} angle={0.4} intensity={2} />
-      <directionalLight position={[5, 5, 5]} intensity={1} />
+      <directionalLight
+        position={[2, 2, 2]}
+        intensity={1.5}
+      />
 
-      <Environment preset="city" />
+      <pointLight
+        position={[0, 2, 2]}
+        intensity={1.2}
+      />
 
-      <FloorGrid scrollProgress={scrollProgress} />
-
-      <Suspense fallback={null}>
-        <Robot scrollProgress={scrollProgress} />
-      </Suspense>
+      {/* 🤖 ROBOT */}
+      <Robot />
     </Canvas>
   );
-};
-
-export default ThreeScene;
+}

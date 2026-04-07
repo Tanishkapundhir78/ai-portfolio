@@ -34,9 +34,9 @@ const About = () => {
             clearInterval(typeSecond);
             setDoneTyping(true);
           }
-        }, 20);
+        }, 40);
       }
-    }, 20);
+    }, 40);
 
     return () => clearInterval(typeFirst);
   }, [startTyping]);

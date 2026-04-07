@@ -90,7 +90,8 @@ export default function Certifications() {
             }}
             
             transition={{
-              duration: 0.35,
+              duration: 1,
+              ease: [0.22, 1, 0.36, 1],
               delay: index * 0.1,
               ease: "easeOut",
             }}
