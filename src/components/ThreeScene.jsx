@@ -1,22 +1,20 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import { useRef } from "react";
+import * as THREE from "three";
 
 function Robot() {
   const robotRef = useRef();
-
-  // 📦 Load GLB (make sure path is correct)
   const { scene } = useGLTF("/robot.glb");
 
-  // 🎬 Animation loop
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
 
     if (robotRef.current) {
-      // ✨ FLOATING (smooth + premium)
+      // ✨ FLOATING
       robotRef.current.position.y = -0.8 + Math.sin(t * 1.2) * 0.15;
 
-      // ✨ SUBTLE ROTATION (alive feel)
+      // ✨ SLIGHT ROTATION
       robotRef.current.rotation.y = Math.sin(t * 0.5) * 0.2;
     }
   });
@@ -26,7 +24,19 @@ function Robot() {
       ref={robotRef}
       object={scene}
       scale={0.9}
-      position={[0, -0.8, 0]} // 🔥 lowered position
+      position={[0, -0.8, 0]}
+    />
+  );
+}
+
+function GridFloor() {
+  const gridRef = useRef();
+
+  return (
+    <primitive
+      ref={gridRef}
+      object={new THREE.GridHelper(20, 40, "#ffffff", "#444444")}
+      position={[0, -1.5, 0]} // 👇 below robot
     />
   );
 }
@@ -42,29 +52,13 @@ export default function ThreeScene() {
         zIndex: 0,
       }}
     >
-      {/* 🌌 LIGHTING (balanced + visible robot) */}
-      <Grid
-        position={[0, -1.5, 0]} // 👇 below robot
-        args={[20, 20]} // size
-        cellSize={1}
-        cellThickness={0.4}
-        sectionSize={3}
-        sectionThickness={0.8}
-        fadeDistance={30}
-        fadeStrength={1}
-        infiniteGrid={true}
-        />
+      {/* 🌌 LIGHTING */}
       <ambientLight intensity={1.2} />
+      <directionalLight position={[2, 2, 2]} intensity={1.5} />
+      <pointLight position={[0, 2, 2]} intensity={1.2} />
 
-      <directionalLight
-        position={[2, 2, 2]}
-        intensity={1.5}
-      />
-
-      <pointLight
-        position={[0, 2, 2]}
-        intensity={1.2}
-      />
+      {/* 🔳 GRID (STABLE) */}
+      <GridFloor />
 
       {/* 🤖 ROBOT */}
       <Robot />
