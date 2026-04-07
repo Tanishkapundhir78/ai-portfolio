@@ -43,6 +43,17 @@ export default function ThreeScene() {
       }}
     >
       {/* 🌌 LIGHTING (balanced + visible robot) */}
+      <Grid
+        position={[0, -1.5, 0]} // 👇 below robot
+        args={[20, 20]} // size
+        cellSize={1}
+        cellThickness={0.4}
+        sectionSize={3}
+        sectionThickness={0.8}
+        fadeDistance={30}
+        fadeStrength={1}
+        infiniteGrid={true}
+        />
       <ambientLight intensity={1.2} />
 
       <directionalLight
