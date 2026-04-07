@@ -72,7 +72,10 @@ export default function Certifications() {
         </motion.p>
 
         {/* GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 perspective-[1200px]">
+        <div 
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+          style ={{ perspective: "1200px" }}
+        > 
 
           {certs.map((cert, index) => (
             <motion.div
@@ -80,26 +83,32 @@ export default function Certifications() {
             initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-
+            
             whileHover={{
-              rotateY: 20,
-              scale: 1.04,
+              rotateY: 25,
+              scale: 1.05,
             }}
             
             transition={{
               duration: 0.35,
-              delay: index * 0.15,
+              delay: index * 0.1,
               ease: "easeOut",
             }}
             
             className="relative group rounded-2xl p-[1px] bg-white/10"
-            style={{ transformStyle: "preserve-3d" }}
->
+            
+            style={{
+              transformStyle: "preserve-3d",
+              willChange: "transform",   // 🔥 IMPORTANT
+              }}
+              >
               {/* ✨ WHITE GLOW */}
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300 bg-white/10 blur-md"></div>
 
               {/* CARD */}
-              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between relative z-10">
+              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between relative z-10"
+              style={{ transform: "translateZ(0)" }} // 🔥 IMPORTANT
+              >
 
                 <div>
                   <h3 className="text-lg font-semibold mb-2">
