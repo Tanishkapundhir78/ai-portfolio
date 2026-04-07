@@ -5,6 +5,17 @@
 @tailwind utilities;
 
 body {
+  background: #000;
+}
+
+.section-glow {
+  background: radial-gradient(
+    circle at center,
+    rgba(255,255,255,0.04),
+    transparent 60%
+  );
+}
+body {
   margin: 0;
   background: #0a0a0a;
   color: white;
