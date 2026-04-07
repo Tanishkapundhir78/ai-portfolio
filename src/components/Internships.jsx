@@ -43,7 +43,7 @@ export default function Internships() {
           viewport={{ once: true }}
           className="text-4xl font-bold text-center mb-6"
         >
-          💼 Internships
+           Internships
         </motion.h2>
 
         <motion.p
@@ -53,7 +53,7 @@ export default function Internships() {
           viewport={{ once: true }}
           className="text-center text-gray-400 mb-16"
         >
-          Hover to explore my experience and work.
+          Explore my experience and work.
         </motion.p>
 
         <div className="flex flex-col gap-10">
