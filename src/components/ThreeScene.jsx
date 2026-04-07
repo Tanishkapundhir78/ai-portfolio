@@ -20,7 +20,7 @@ function FloorGrid({ scrollProgress }) {
   return (
     <gridHelper
       ref={ref}
-      args={[40, 40, "#2a2a2a", "#111111"]} // soft colors
+      args={[40, 40, "#2a2a2a", "#564f4f"]} // soft colors
       position={[0, -2, 0]}
     />
   );
