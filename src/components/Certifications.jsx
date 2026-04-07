@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function Certifications() {
   const certs = [
     {
@@ -9,7 +11,7 @@ export default function Certifications() {
     },
     {
       title: "Linux Essentials",
-      issuer: "LnB (Linux & Networking Basics)",
+      issuer: "LnB (Learn n Build)",
       description:
         "Gained hands-on exposure to Linux commands, file systems, and system operations essential for development and data workflows.",
       link: "#",
@@ -38,71 +40,104 @@ export default function Certifications() {
   ];
 
   return (
-    <section className="relative text-white py-20 px-6 overflow-hidden">
+    <section className="relative text-white py-24 px-6 overflow-hidden">
 
-      {/* 🔥 SAME BACKGROUND */}
-      <div className="absolute inset-0 bg-[#0b0f14]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_60%)]"></div>
-      </div>
+      {/* 🌌 MATCHING BACKGROUND */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black z-0" />
+
+      {/* ✨ SOFT WHITE GLOW */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-white/5 blur-[140px] rounded-full z-0"></div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
 
         {/* HEADER */}
-        <h2 className="text-4xl font-bold text-center mb-4">
-          🏆 Certifications
-        </h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="text-4xl font-bold text-center mb-4"
+          style={{ fontFamily: "'Playfair Display', serif" }}
+        >
+           Certifications
+        </motion.h2>
 
-        <p className="text-center text-gray-400 mb-16 max-w-2xl mx-auto">
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 1 }}
+          viewport={{ once: true }}
+          className="text-center text-gray-400 mb-16 max-w-2xl mx-auto"
+        >
           A collection of certifications validating my skills across AI, cloud, analytics, and systems.
-        </p>
+        </motion.p>
 
         {/* GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {certs.map((cert, index) => (
-            <div
-              key={index}
-              className="relative group rounded-2xl p-[1px] 
-              bg-gradient-to-r from-white/10 to-white/10
-              transition-all duration-300
-              hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20
-              hover:from-purple-400/50 hover:to-blue-400/50"
-            >
-              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 perspective-[1200px]">
 
+          {certs.map((cert, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1,
+                delay: index * 0.15,
+                ease: "easeOut",
+              }}
+              viewport={{ once: true }}
+              whileHover={{ rotateY: 180 }}
+              className="relative group rounded-2xl h-[260px]"
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              {/* 🔥 WHITE GLOW */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 bg-white/10 blur-md"></div>
+
+              {/* FRONT */}
+              <div
+                className="absolute inset-0 bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 flex flex-col justify-between"
+                style={{ backfaceVisibility: "hidden" }}
+              >
                 <div>
-                  {/* TITLE */}
                   <h3 className="text-lg font-semibold mb-2">
                     {cert.title}
                   </h3>
 
-                  {/* ISSUER */}
                   <p className="text-sm text-gray-400 mb-3">
                     {cert.issuer}
                   </p>
 
-                  {/* DESCRIPTION */}
-                  <p className="text-gray-400 text-sm mb-6">
+                  <p className="text-gray-400 text-sm">
                     {cert.description}
                   </p>
                 </div>
 
-                {/* BUTTON */}
                 <a
                   href={cert.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative rounded-lg p-[1px] 
-                  bg-gradient-to-r from-white/10 to-white/10
-                  transition-all duration-300
-                  hover:from-purple-400/50 hover:to-blue-400/50"
+                  className="rounded-lg px-4 py-2 text-center text-sm 
+                  bg-white/5 border border-white/10 
+                  hover:bg-white/10 transition-all duration-300
+                  hover:shadow-[0_0_14px_rgba(255,255,255,0.3)]"
                 >
-                  <span className="block bg-[#1a1a1a] px-4 py-2 rounded-lg text-center text-sm">
-                    🎓 View Certificate
-                  </span>
+                  🎓 View Certificate
                 </a>
               </div>
-            </div>
+
+              {/* BACK (SIMPLE) */}
+              <div
+                className="absolute inset-0 bg-[#111] border border-white/10 rounded-2xl flex items-center justify-center text-gray-300 text-sm"
+                style={{
+                  transform: "rotateY(180deg)",
+                  backfaceVisibility: "hidden",
+                }}
+              >
+                Verified Credential ✅
+              </div>
+            </motion.div>
           ))}
+
         </div>
 
       </div>
